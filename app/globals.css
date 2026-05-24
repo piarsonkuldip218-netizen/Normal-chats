@@ -8,6 +8,8 @@
   --brand-600: #0d9488;
   --brand-700: #0f766e;
   --accent-500: #06b6d4;
+  /* Glass blur intensity — overridden on mobile for perf. */
+  --glass-blur: 14px;
 }
 
 * {
@@ -24,6 +26,7 @@ body {
   color: #0f172a;
   font-feature-settings: "cv11", "ss01";
   font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Selection */
@@ -49,31 +52,37 @@ body {
 }
 
 @layer components {
-  /* Glassmorphism utility */
+  /* Glassmorphism utility — backdrop-filter is GPU-expensive, so we keep the
+     blur radius modest and skip the saturate() filter (which roughly doubles
+     paint cost). */
   .glass {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 8px 32px rgba(13, 148, 136, 0.12);
   }
 
   .glass-dark {
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .glass-card {
     @apply glass rounded-2xl;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-      box-shadow 0.4s ease, background 0.4s ease;
+    /* Promote to its own GPU layer so hover transforms don't trigger
+       layout/paint of nearby elements during scroll. */
+    transform: translateZ(0);
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.3s ease, background 0.3s ease;
   }
   .glass-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-6px) translateZ(0);
     box-shadow: 0 20px 40px rgba(13, 148, 136, 0.22);
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.78);
   }
 
   .btn-primary {
@@ -91,9 +100,8 @@ body {
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold;
     color: #0f766e;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.78);
     border: 1px solid rgba(13, 148, 136, 0.25);
-    backdrop-filter: blur(10px);
     transition: all 0.25s ease;
   }
   .btn-ghost:hover {
@@ -116,16 +124,26 @@ body {
     background-clip: text;
     color: transparent;
   }
+
+  /* Performance helper — lets the browser skip rendering off-screen sections
+     until they're scrolled near. Major paint-cost reduction during scroll. */
+  .perf-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+  }
 }
 
-/* Background blobs */
+/* Background blobs — reduced blur radius (was 80px) saves a lot of GPU during scroll. */
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.45;
+  filter: blur(48px);
+  opacity: 0.4;
   pointer-events: none;
   z-index: 0;
+  /* Keep on its own layer so they don't repaint with body content. */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Shimmer for placeholder images */
@@ -138,6 +156,35 @@ body {
   );
   background-size: 1000px 100%;
   animation: shimmer 2.5s linear infinite;
+}
+
+/* ------------------------------------------------------------------
+ * MOBILE PERFORMANCE TWEAKS
+ * Backdrop-filter is the #1 source of scroll jank on mobile devices.
+ * On small screens we drop blur intensity and lean on solid translucent
+ * backgrounds, which look near-identical at this scale but are ~10x
+ * cheaper to paint.
+ * ----------------------------------------------------------------*/
+@media (max-width: 768px) {
+  :root {
+    --glass-blur: 8px;
+  }
+
+  .blob {
+    /* Smaller paint area on mobile = smoother scroll. */
+    filter: blur(36px);
+    opacity: 0.32;
+  }
+
+  /* Hover effects don't apply on touch devices; remove transition cost. */
+  .glass-card {
+    transition: none;
+  }
+  .glass-card:hover {
+    transform: translateZ(0);
+    box-shadow: 0 8px 32px rgba(13, 148, 136, 0.12);
+    background: rgba(255, 255, 255, 0.7);
+  }
 }
 
 /* Reduce motion for accessibility */

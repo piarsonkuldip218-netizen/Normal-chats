@@ -13,10 +13,18 @@ export default function Home() {
       <Navbar />
       <main className="relative overflow-hidden">
         <Hero />
-        <Services />
-        <About />
-        <WhyUs />
-        <Contact />
+        <div className="perf-section">
+          <Services />
+        </div>
+        <div className="perf-section">
+          <About />
+        </div>
+        <div className="perf-section">
+          <WhyUs />
+        </div>
+        <div className="perf-section">
+          <Contact />
+        </div>
       </main>
       <Footer />
       <FloatingButtons />
