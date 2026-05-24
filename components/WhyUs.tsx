@@ -1,0 +1,92 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Star,
+  Cpu,
+  HeartPulse,
+  Wallet,
+  Clock,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
+import { features } from "@/lib/data";
+
+const iconMap: Record<string, LucideIcon> = {
+  Star,
+  Cpu,
+  HeartPulse,
+  Wallet,
+  Clock,
+  Users,
+};
+
+export default function WhyUs() {
+  return (
+    <section
+      id="why-us"
+      className="relative py-20 md:py-28"
+    >
+      {/* Gradient background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-700 via-brand-600 to-accent-600" />
+        <div className="absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]">
+          <div className="absolute inset-0" style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)",
+            backgroundSize: "24px 24px",
+          }} />
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-2xl text-center text-white"
+        >
+          <span className="inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur">
+            Why Choose Us
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
+            Trusted by Families Across <br className="hidden sm:block" />
+            Rangapara &amp; Sonitpur
+          </h2>
+          <p className="mt-4 text-white/85">
+            We focus on three things: comfort, clinical excellence and clear
+            communication. Here&apos;s what makes patients keep coming back.
+          </p>
+        </motion.div>
+
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => {
+            const Icon = iconMap[f.icon] ?? Star;
+            return (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.55,
+                  delay: (i % 3) * 0.08,
+                }}
+                className="glass-dark rounded-2xl p-6 transition hover:bg-white/15"
+              >
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-white/15 text-white">
+                  <Icon size={22} />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold text-white">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-sm text-white/80">{f.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
