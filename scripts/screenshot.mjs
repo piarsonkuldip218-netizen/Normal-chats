@@ -6,7 +6,9 @@ const outDir = './preview';
 mkdirSync(outDir, { recursive: true });
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
+  });
 
   const ctxDesktop = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
   const pageD = await ctxDesktop.newPage();
