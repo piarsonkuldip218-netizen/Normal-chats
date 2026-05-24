@@ -37,3 +37,6 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+
+# nss extraction artifacts (not part of app)
+/opt/

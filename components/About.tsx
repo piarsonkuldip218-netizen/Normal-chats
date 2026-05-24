@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { GraduationCap, Award, Users, Stethoscope } from "lucide-react";
 import { clinic } from "@/lib/data";
+import { asset } from "@/lib/path";
 
 const stats = [
   { icon: Users, value: "1000+", label: "Happy Patients" },
@@ -30,7 +31,7 @@ export default function About() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100 to-accent-400/40">
               {/* Replace /doctor.jpg with the real photo when available */}
               <Image
-                src="/doctor.jpg"
+                src={asset("/doctor.jpg")}
                 alt={`${clinic.doctor.name} - ${clinic.doctor.qualification}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"

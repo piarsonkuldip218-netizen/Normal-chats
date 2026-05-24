@@ -3,6 +3,8 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { clinic } from "@/lib/data";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -61,6 +63,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  icons: {
+    icon: [{ url: `${basePath}/favicon.svg`, type: "image/svg+xml" }],
   },
 };
 
