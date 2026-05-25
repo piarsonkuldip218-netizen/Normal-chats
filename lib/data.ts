@@ -47,12 +47,16 @@ export const clinic = {
   },
 };
 
+// Each service uses an icon-based card design (no photo) so we never risk
+// a mismatched image (e.g. an aligner photo on the extraction card).
+// When the client provides verified, treatment-specific photos, add an
+// `image` field per service and the Services component will start showing
+// them automatically.
 export const services = [
   {
     slug: "general-checkup",
     title: "General Checkup & Cleaning",
     icon: "Stethoscope",
-    image: "/services/checkup.jpg",
     description:
       "Comprehensive oral examination, scaling, polishing and preventive care to keep your smile healthy.",
   },
@@ -60,7 +64,6 @@ export const services = [
     slug: "root-canal",
     title: "Root Canal Treatment",
     icon: "Activity",
-    image: "/services/rct.jpg",
     description:
       "Painless single-sitting RCT with modern rotary endodontics to save your natural tooth.",
   },
@@ -68,7 +71,6 @@ export const services = [
     slug: "extraction",
     title: "Tooth Extraction",
     icon: "Minus",
-    image: "/services/extraction.jpg",
     description:
       "Safe, gentle extractions including wisdom tooth removal under sterile conditions.",
   },
@@ -76,7 +78,6 @@ export const services = [
     slug: "implants",
     title: "Dental Implants",
     icon: "Anchor",
-    image: "/services/implants.jpg",
     description:
       "Permanent tooth replacement with high-grade titanium implants that look and feel natural.",
   },
@@ -84,7 +85,6 @@ export const services = [
     slug: "braces",
     title: "Braces & Orthodontics",
     icon: "AlignCenter",
-    image: "/services/braces.jpg",
     description:
       "Metal, ceramic and clear aligners to straighten teeth and correct bite issues for all ages.",
   },
@@ -92,7 +92,6 @@ export const services = [
     slug: "whitening",
     title: "Teeth Whitening",
     icon: "Sparkles",
-    image: "/services/whitening.jpg",
     description:
       "Professional in-clinic and take-home whitening for a brighter, more confident smile.",
   },
@@ -100,7 +99,6 @@ export const services = [
     slug: "crowns",
     title: "Crowns & Bridges",
     icon: "Crown",
-    image: "/services/crowns.jpg",
     description:
       "Durable zirconia and PFM crowns and bridges to restore broken or missing teeth.",
   },
@@ -108,7 +106,6 @@ export const services = [
     slug: "kids",
     title: "Kids Dentistry",
     icon: "Baby",
-    image: "/services/kids.jpg",
     description:
       "Friendly, fear-free pediatric dental care including fluoride, sealants and cavity treatment.",
   },
@@ -116,7 +113,6 @@ export const services = [
     slug: "cosmetic",
     title: "Cosmetic Dentistry",
     icon: "Smile",
-    image: "/services/cosmetic.jpg",
     description:
       "Veneers, smile makeovers and aesthetic procedures designed around your face and personality.",
   },
@@ -156,61 +152,21 @@ export const features = [
 ];
 
 // AI / advanced technology used at the clinic.
-// `image` is optional — falls back to gradient + icon design when absent.
-export const aiTechnology = [
-  {
-    slug: "ai-diagnosis",
-    title: "AI-Powered Diagnostics",
-    icon: "Brain",
-    image: "/tech/scanner.jpg",
-    description:
-      "Smart imaging that highlights cavities, gum issues and bone loss in seconds — never miss what the human eye might.",
-    badge: "AI",
-  },
-  {
-    slug: "digital-3d",
-    title: "Digital 3D Smile Scan",
-    icon: "ScanLine",
-    image: "/tech/3d.jpg",
-    description:
-      "Goodbye messy moulds. Our intra-oral 3D scanner captures your smile in vivid detail in under 5 minutes.",
-    badge: "3D",
-  },
-  {
-    slug: "rvg-xray",
-    title: "Low-Radiation Digital X-Rays",
-    icon: "Radio",
-    image: "/tech/xray.jpg",
-    description:
-      "Up to 90% less radiation than traditional X-rays, with instant results on screen for accurate planning.",
-    badge: "RVG",
-  },
-  {
-    slug: "laser",
-    title: "Laser-Assisted Treatments",
-    icon: "Zap",
-    image: "/tech/laser.jpg",
-    description:
-      "Precision laser technology for gum contouring, cavity treatment and minor surgeries — minimal pain, faster healing.",
-    badge: "Laser",
-  },
-  {
-    slug: "smart-planning",
-    title: "Computer-Guided Planning",
-    icon: "Cpu",
-    description:
-      "Implants and braces planned virtually on a 3D model first — exact placement, predictable results, no surprises.",
-    badge: "CAD",
-  },
-  {
-    slug: "smile-design",
-    title: "AI Smile Design Preview",
-    icon: "Sparkles",
-    description:
-      "See your future smile before treatment begins. Our software simulates results so you can decide with confidence.",
-    badge: "Preview",
-  },
-];
+// Empty by default — the Technology section will render a clean
+// "coming soon" placeholder until the client provides specific
+// equipment names + photos. To populate, push entries shaped like:
+//   {
+//     slug: "...", title: "...", icon: "Brain", badge: "AI",
+//     description: "...", image: "/tech/your-photo.jpg" (optional)
+//   }
+export const aiTechnology: Array<{
+  slug: string;
+  title: string;
+  icon: string;
+  badge?: string;
+  image?: string;
+  description: string;
+}> = [];
 
 // Photo gallery — placeholders ready for clinic, equipment & treatment photos.
 // Add as many entries as needed and drop matching files into /public/gallery/.

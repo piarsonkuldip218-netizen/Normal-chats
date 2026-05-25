@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Stethoscope,
@@ -16,7 +15,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { services, clinic } from "@/lib/data";
-import { asset } from "@/lib/path";
 
 const iconMap: Record<string, LucideIcon> = {
   Stethoscope,
@@ -74,33 +72,16 @@ export default function Services() {
                   delay: (i % 3) * 0.08,
                   ease: [0.2, 0.8, 0.2, 1],
                 }}
-                className="glass-card group relative overflow-hidden flex flex-col"
+                className="glass-card group relative overflow-hidden p-6"
               >
-                {/* Image header */}
-                <div className="relative h-44 w-full overflow-hidden">
-                  {s.image ? (
-                    <Image
-                      src={asset(s.image)}
-                      alt={s.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="h-full w-full bg-gradient-to-br from-brand-400 via-brand-500 to-accent-500" />
-                  )}
-                  {/* Gradient overlay for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-slate-900/15 to-transparent" />
+                {/* Decorative gradient blob inside card on hover */}
+                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br from-brand-200/60 to-accent-400/40 blur-2xl opacity-0 transition group-hover:opacity-100" />
 
-                  {/* Floating icon badge */}
-                  <div className="absolute -bottom-6 left-5 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow ring-4 ring-white">
-                    <Icon size={22} strokeWidth={2.2} />
+                <div className="relative flex h-full flex-col">
+                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
+                    <Icon size={26} strokeWidth={2} />
                   </div>
-                </div>
-
-                {/* Body */}
-                <div className="flex-1 p-6 pt-9">
-                  <h3 className="font-display text-lg font-semibold text-slate-900">
+                  <h3 className="mt-5 font-display text-lg font-semibold text-slate-900">
                     {s.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
