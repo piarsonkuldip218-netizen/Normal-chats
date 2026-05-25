@@ -27,9 +27,6 @@ body {
   font-feature-settings: "cv11", "ss01";
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
-  /* Bump default body weight from 400 -> 500 so paragraph text and
-     unstyled labels feel a touch bolder without any fancy effects. */
-  font-weight: 500;
 }
 
 /* Selection */

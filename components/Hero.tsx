@@ -62,10 +62,10 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             custom={2}
-            className="mt-5 max-w-xl text-base font-medium text-slate-700 md:text-lg"
+            className="mt-5 max-w-xl text-base text-slate-600 md:text-lg"
           >
             Modern, painless and affordable dental care in Rangapara, Sonitpur — led by{" "}
-            <span className="font-bold text-slate-900">
+            <span className="font-semibold text-slate-800">
               Dr. Tabarak Hussain (B.D.S)
             </span>
             . From routine checkups to advanced implants, we bring expert care to your family.
@@ -104,8 +104,8 @@ export default function Hero() {
                 <Clock size={18} />
               </div>
               <div>
-                <div className="text-xs font-semibold text-slate-600">Open Daily</div>
-                <div className="text-sm font-bold text-slate-900">
+                <div className="text-xs text-slate-500">Open Daily</div>
+                <div className="text-sm font-semibold text-slate-800">
                   10 AM – 8 PM
                 </div>
               </div>
@@ -115,8 +115,8 @@ export default function Hero() {
                 <MapPin size={18} />
               </div>
               <div>
-                <div className="text-xs font-semibold text-slate-600">Visit Us</div>
-                <div className="text-sm font-bold text-slate-900">
+                <div className="text-xs text-slate-500">Visit Us</div>
+                <div className="text-sm font-semibold text-slate-800">
                   Rangapara, Sonitpur
                 </div>
               </div>
@@ -126,8 +126,8 @@ export default function Hero() {
                 <Star size={18} />
               </div>
               <div>
-                <div className="text-xs font-semibold text-slate-600">Rated</div>
-                <div className="text-sm font-bold text-slate-900">
+                <div className="text-xs text-slate-500">Rated</div>
+                <div className="text-sm font-semibold text-slate-800">
                   4.8★ on Google
                 </div>
               </div>
@@ -156,9 +156,9 @@ export default function Hero() {
           >
             <div className="flex items-center gap-2">
               <div className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <div className="font-bold text-slate-900">Painless Care</div>
+              <div className="font-semibold text-slate-800">Painless Care</div>
             </div>
-            <div className="mt-1 text-xs font-semibold text-slate-600">
+            <div className="mt-1 text-xs text-slate-500">
               Latest anaesthesia
             </div>
           </motion.div>
@@ -170,9 +170,9 @@ export default function Hero() {
           >
             <div className="flex items-center gap-2">
               <Star size={14} className="fill-amber-400 text-amber-400" />
-              <div className="font-bold text-slate-900">68+ Reviews</div>
+              <div className="font-semibold text-slate-800">68+ Reviews</div>
             </div>
-            <div className="mt-1 text-xs font-semibold text-slate-600">
+            <div className="mt-1 text-xs text-slate-500">
               Trusted by Sonitpur
             </div>
           </motion.div>

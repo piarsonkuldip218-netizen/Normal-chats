@@ -103,10 +103,10 @@ export default function Services() {
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
                     <Icon size={22} strokeWidth={2.2} />
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-bold text-slate-900">
+                  <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {s.description}
                   </p>
 
@@ -114,7 +114,7 @@ export default function Services() {
                     href={wa}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 transition group-hover:gap-2.5"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition group-hover:gap-2.5"
                   >
                     Ask on WhatsApp
                     <ArrowRight size={14} />

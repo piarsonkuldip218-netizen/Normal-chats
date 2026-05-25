@@ -69,13 +69,13 @@ export default function Contact() {
                 <Phone size={20} />
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                <div className="text-xs uppercase tracking-wider text-slate-500">
                   Call Us
                 </div>
-                <div className="mt-1 font-bold text-slate-900">
+                <div className="mt-1 font-semibold text-slate-900">
                   {clinic.contact.phoneDisplay}
                 </div>
-                <div className="mt-1 text-xs font-medium text-slate-600">
+                <div className="mt-1 text-xs text-slate-500">
                   Tap to dial directly
                 </div>
               </div>
@@ -91,13 +91,13 @@ export default function Contact() {
                 <MessageCircle size={20} />
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                <div className="text-xs uppercase tracking-wider text-slate-500">
                   WhatsApp
                 </div>
-                <div className="mt-1 font-bold text-slate-900">
+                <div className="mt-1 font-semibold text-slate-900">
                   Chat with us instantly
                 </div>
-                <div className="mt-1 text-xs font-medium text-slate-600">
+                <div className="mt-1 text-xs text-slate-500">
                   Quick replies during clinic hours
                 </div>
               </div>
@@ -108,10 +108,10 @@ export default function Contact() {
                 <MapPin size={20} />
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                <div className="text-xs uppercase tracking-wider text-slate-500">
                   Address
                 </div>
-                <div className="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">
+                <div className="mt-1 text-sm font-medium text-slate-900 leading-relaxed">
                   {clinic.address.line1},<br />
                   {clinic.address.line2},<br />
                   {clinic.address.line3},<br />
@@ -126,13 +126,13 @@ export default function Contact() {
                 <Clock size={20} />
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                <div className="text-xs uppercase tracking-wider text-slate-500">
                   Working Hours
                 </div>
-                <div className="mt-1 text-sm font-bold text-slate-900">
+                <div className="mt-1 text-sm font-medium text-slate-900">
                   Open all 7 days
                 </div>
-                <div className="mt-1 text-xs font-medium text-slate-600">
+                <div className="mt-1 text-xs text-slate-500">
                   10:00 AM – 8:00 PM
                 </div>
               </div>
