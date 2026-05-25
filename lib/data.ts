@@ -188,9 +188,9 @@ export const galleryPhotos: Array<{
 
 export const navLinks = [
   { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Technology", href: "#technology" },
-  { label: "About", href: "#about" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];

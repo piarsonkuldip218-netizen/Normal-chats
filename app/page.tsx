@@ -15,14 +15,16 @@ export default function Home() {
       <Navbar />
       <main className="relative overflow-hidden">
         <Hero />
+        {/* Dr. Tabarak Hussain's profile sits right after the 3D hero so visitors
+            see the face behind the clinic before scrolling into services. */}
+        <div className="perf-section">
+          <About />
+        </div>
         <div className="perf-section">
           <Services />
         </div>
         <div className="perf-section">
           <Technology />
-        </div>
-        <div className="perf-section">
-          <About />
         </div>
         <div className="perf-section">
           <WhyUs />
