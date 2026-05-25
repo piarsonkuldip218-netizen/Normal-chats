@@ -52,6 +52,7 @@ export const services = [
     slug: "general-checkup",
     title: "General Checkup & Cleaning",
     icon: "Stethoscope",
+    image: "/services/checkup.jpg",
     description:
       "Comprehensive oral examination, scaling, polishing and preventive care to keep your smile healthy.",
   },
@@ -59,6 +60,7 @@ export const services = [
     slug: "root-canal",
     title: "Root Canal Treatment",
     icon: "Activity",
+    image: "/services/rct.jpg",
     description:
       "Painless single-sitting RCT with modern rotary endodontics to save your natural tooth.",
   },
@@ -66,6 +68,7 @@ export const services = [
     slug: "extraction",
     title: "Tooth Extraction",
     icon: "Minus",
+    image: "/services/extraction.jpg",
     description:
       "Safe, gentle extractions including wisdom tooth removal under sterile conditions.",
   },
@@ -73,6 +76,7 @@ export const services = [
     slug: "implants",
     title: "Dental Implants",
     icon: "Anchor",
+    image: "/services/implants.jpg",
     description:
       "Permanent tooth replacement with high-grade titanium implants that look and feel natural.",
   },
@@ -80,6 +84,7 @@ export const services = [
     slug: "braces",
     title: "Braces & Orthodontics",
     icon: "AlignCenter",
+    image: "/services/braces.jpg",
     description:
       "Metal, ceramic and clear aligners to straighten teeth and correct bite issues for all ages.",
   },
@@ -87,6 +92,7 @@ export const services = [
     slug: "whitening",
     title: "Teeth Whitening",
     icon: "Sparkles",
+    image: "/services/whitening.jpg",
     description:
       "Professional in-clinic and take-home whitening for a brighter, more confident smile.",
   },
@@ -94,6 +100,7 @@ export const services = [
     slug: "crowns",
     title: "Crowns & Bridges",
     icon: "Crown",
+    image: "/services/crowns.jpg",
     description:
       "Durable zirconia and PFM crowns and bridges to restore broken or missing teeth.",
   },
@@ -101,6 +108,7 @@ export const services = [
     slug: "kids",
     title: "Kids Dentistry",
     icon: "Baby",
+    image: "/services/kids.jpg",
     description:
       "Friendly, fear-free pediatric dental care including fluoride, sealants and cavity treatment.",
   },
@@ -108,6 +116,7 @@ export const services = [
     slug: "cosmetic",
     title: "Cosmetic Dentistry",
     icon: "Smile",
+    image: "/services/cosmetic.jpg",
     description:
       "Veneers, smile makeovers and aesthetic procedures designed around your face and personality.",
   },
@@ -146,10 +155,103 @@ export const features = [
   },
 ];
 
+// AI / advanced technology used at the clinic.
+// `image` is optional — falls back to gradient + icon design when absent.
+export const aiTechnology = [
+  {
+    slug: "ai-diagnosis",
+    title: "AI-Powered Diagnostics",
+    icon: "Brain",
+    image: "/tech/scanner.jpg",
+    description:
+      "Smart imaging that highlights cavities, gum issues and bone loss in seconds — never miss what the human eye might.",
+    badge: "AI",
+  },
+  {
+    slug: "digital-3d",
+    title: "Digital 3D Smile Scan",
+    icon: "ScanLine",
+    image: "/tech/3d.jpg",
+    description:
+      "Goodbye messy moulds. Our intra-oral 3D scanner captures your smile in vivid detail in under 5 minutes.",
+    badge: "3D",
+  },
+  {
+    slug: "rvg-xray",
+    title: "Low-Radiation Digital X-Rays",
+    icon: "Radio",
+    image: "/tech/xray.jpg",
+    description:
+      "Up to 90% less radiation than traditional X-rays, with instant results on screen for accurate planning.",
+    badge: "RVG",
+  },
+  {
+    slug: "laser",
+    title: "Laser-Assisted Treatments",
+    icon: "Zap",
+    image: "/tech/laser.jpg",
+    description:
+      "Precision laser technology for gum contouring, cavity treatment and minor surgeries — minimal pain, faster healing.",
+    badge: "Laser",
+  },
+  {
+    slug: "smart-planning",
+    title: "Computer-Guided Planning",
+    icon: "Cpu",
+    description:
+      "Implants and braces planned virtually on a 3D model first — exact placement, predictable results, no surprises.",
+    badge: "CAD",
+  },
+  {
+    slug: "smile-design",
+    title: "AI Smile Design Preview",
+    icon: "Sparkles",
+    description:
+      "See your future smile before treatment begins. Our software simulates results so you can decide with confidence.",
+    badge: "Preview",
+  },
+];
+
+// Photo gallery — placeholders ready for clinic, equipment & treatment photos.
+// Add as many entries as needed and drop matching files into /public/gallery/.
+export const galleryPhotos = [
+  {
+    src: "/gallery/clinic-1.jpg",
+    caption: "Treatment room with modern equipment",
+    category: "Clinic",
+  },
+  {
+    src: "/gallery/clinic-2.jpg",
+    caption: "Sterilized dental chair",
+    category: "Clinic",
+  },
+  {
+    src: "/gallery/clinic-3.jpg",
+    caption: "Diagnostic equipment in use",
+    category: "Equipment",
+  },
+  {
+    src: "/gallery/clinic-4.jpg",
+    caption: "Comfortable waiting area",
+    category: "Clinic",
+  },
+  {
+    src: "/gallery/clinic-5.jpg",
+    caption: "Orthodontic treatment in progress",
+    category: "Treatments",
+  },
+  {
+    src: "/gallery/clinic-6.jpg",
+    caption: "Modern reception area",
+    category: "Clinic",
+  },
+];
+
 export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
+  { label: "Technology", href: "#technology" },
   { label: "About", href: "#about" },
-  { label: "Why Us", href: "#why-us" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];
