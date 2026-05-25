@@ -47,6 +47,13 @@ export const clinic = {
   },
 };
 
+// Clinic photos (front-of-shop, exterior). Set `front` to the file path
+// once the image is uploaded into /public/clinic/. The Visit section
+// renders a polished icon placeholder while this is null.
+export const clinicPhoto: { front: string | null } = {
+  front: null,
+};
+
 // Each service has a verified, treatment-specific photo provided by the
 // clinic. Photos live in /public/services/ and are referenced via the
 // optional `image` field; the Services component renders the photo as a
@@ -190,7 +197,7 @@ export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Technology", href: "#technology" },
+  { label: "Visit", href: "#visit" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];
