@@ -54,14 +54,14 @@ export default function Visit() {
             className="relative mx-auto w-full max-w-xl"
           >
             <div className="relative overflow-hidden rounded-[2rem] glass p-3">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100 to-accent-400/40">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100 to-accent-400/40">
                 {clinicPhoto.front ? (
                   <Image
                     src={asset(clinicPhoto.front)}
                     alt={`${clinic.fullName} clinic front view`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 600px"
-                    className="object-cover"
+                    className="object-cover object-center"
                   />
                 ) : (
                   /* Polished placeholder while the photo isn't uploaded yet */

@@ -51,7 +51,7 @@ export const clinic = {
 // once the image is uploaded into /public/clinic/. The Visit section
 // renders a polished icon placeholder while this is null.
 export const clinicPhoto: { front: string | null } = {
-  front: null,
+  front: "/clinic/front.jpg",
 };
 
 // Each service has a verified, treatment-specific photo provided by the
