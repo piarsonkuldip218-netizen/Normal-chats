@@ -168,40 +168,15 @@ export const aiTechnology: Array<{
   description: string;
 }> = [];
 
-// Photo gallery — placeholders ready for clinic, equipment & treatment photos.
-// Add as many entries as needed and drop matching files into /public/gallery/.
-export const galleryPhotos = [
-  {
-    src: "/gallery/clinic-1.jpg",
-    caption: "Treatment room with modern equipment",
-    category: "Clinic",
-  },
-  {
-    src: "/gallery/clinic-2.jpg",
-    caption: "Sterilized dental chair",
-    category: "Clinic",
-  },
-  {
-    src: "/gallery/clinic-3.jpg",
-    caption: "Diagnostic equipment in use",
-    category: "Equipment",
-  },
-  {
-    src: "/gallery/clinic-4.jpg",
-    caption: "Comfortable waiting area",
-    category: "Clinic",
-  },
-  {
-    src: "/gallery/clinic-5.jpg",
-    caption: "Orthodontic treatment in progress",
-    category: "Treatments",
-  },
-  {
-    src: "/gallery/clinic-6.jpg",
-    caption: "Modern reception area",
-    category: "Clinic",
-  },
-];
+// Photo gallery — empty by default. Once the clinic provides real photos,
+// drop them into /public/gallery/ and add an entry per photo here.
+// Shape:
+//   { src: "/gallery/your-photo.jpg", caption: "Short caption", category: "Clinic" | "Equipment" | "Treatments" | "Team" }
+export const galleryPhotos: Array<{
+  src: string;
+  caption: string;
+  category: string;
+}> = [];
 
 export const navLinks = [
   { label: "Home", href: "#home" },

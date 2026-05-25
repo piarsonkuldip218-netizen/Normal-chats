@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, Camera } from "lucide-react";
 import { galleryPhotos } from "@/lib/data";
 import { asset } from "@/lib/path";
 
 export default function Gallery() {
+  const hasPhotos = galleryPhotos.length > 0;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   // Esc closes lightbox; arrow keys navigate.
@@ -59,54 +60,94 @@ export default function Gallery() {
         </motion.div>
 
         {/* Masonry-style responsive grid: first card spans 2 cols on lg for visual interest */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
-          {galleryPhotos.map((p, i) => (
-            <motion.button
-              key={p.src + i}
-              type="button"
-              onClick={() => setActiveIndex(i)}
-              initial={{ opacity: 0, scale: 0.92 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.5,
-                delay: (i % 6) * 0.05,
-                ease: [0.2, 0.8, 0.2, 1],
-              }}
-              className={`group relative overflow-hidden rounded-2xl glass aspect-square ${
-                i === 0 ? "col-span-2 row-span-2 aspect-[4/4] sm:aspect-square" : ""
-              }`}
-              aria-label={`Open photo: ${p.caption}`}
-            >
-              <Image
-                src={asset(p.src)}
-                alt={p.caption}
-                fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+        {hasPhotos ? (
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
+            {galleryPhotos.map((p, i) => (
+              <motion.button
+                key={p.src + i}
+                type="button"
+                onClick={() => setActiveIndex(i)}
+                initial={{ opacity: 0, scale: 0.92 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: (i % 6) * 0.05,
+                  ease: [0.2, 0.8, 0.2, 1],
+                }}
+                className={`group relative overflow-hidden rounded-2xl glass aspect-square ${
+                  i === 0 ? "col-span-2 row-span-2 aspect-[4/4] sm:aspect-square" : ""
+                }`}
+                aria-label={`Open photo: ${p.caption}`}
+              >
+                <Image
+                  src={asset(p.src)}
+                  alt={p.caption}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" />
+
+                {/* Category chip */}
+                <div className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-700 backdrop-blur">
+                  {p.category}
+                </div>
+
+                {/* Zoom icon hint */}
+                <div className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/0 text-white opacity-0 transition group-hover:bg-white/20 group-hover:opacity-100">
+                  <Maximize2 size={16} />
+                </div>
+
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
+                  <p className="text-xs font-semibold text-white drop-shadow-md sm:text-sm">
+                    {p.caption}
+                  </p>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        ) : (
+          /* Empty-state placeholder shown until the clinic provides real photos. */
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto mt-12 max-w-3xl"
+          >
+            <div className="glass-card relative overflow-hidden p-8 md:p-12 text-center">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 1px 1px, rgba(13,148,136,0.18) 1px, transparent 0)",
+                  backgroundSize: "22px 22px",
+                  maskImage:
+                    "radial-gradient(ellipse at center, black, transparent 70%)",
+                }}
               />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" />
-
-              {/* Category chip */}
-              <div className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-700 backdrop-blur">
-                {p.category}
-              </div>
-
-              {/* Zoom icon hint */}
-              <div className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/0 text-white opacity-0 transition group-hover:bg-white/20 group-hover:opacity-100">
-                <Maximize2 size={16} />
-              </div>
-
-              {/* Caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
-                <p className="text-xs font-semibold text-white drop-shadow-md sm:text-sm">
-                  {p.caption}
+              <div className="relative">
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
+                  <Camera size={28} strokeWidth={2} />
+                </div>
+                <h3 className="mt-5 font-display text-xl font-semibold text-slate-900 md:text-2xl">
+                  Photo gallery coming soon
+                </h3>
+                <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-slate-600 md:text-base">
+                  We&apos;re putting together photos of our clinic, equipment
+                  and team. Drop in soon to take a closer look at TAMS Dental.
+                </p>
+                <p className="mt-4 text-xs uppercase tracking-[0.2em] text-slate-500">
+                  ★ Updated regularly ★
                 </p>
               </div>
-            </motion.button>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* Lightbox */}
