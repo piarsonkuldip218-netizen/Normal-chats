@@ -74,11 +74,11 @@ export default function About() {
           <h2 className="section-title mt-4">
             Compassionate Care, Modern Dentistry
           </h2>
-          <p className="mt-4 text-slate-600">
+          <p className="mt-4 text-base font-medium text-slate-700">
             {clinic.doctor.bio}
           </p>
-          <p className="mt-3 text-slate-600">
-            At <span className="font-semibold text-slate-800">{clinic.fullName}</span>, we
+          <p className="mt-3 text-base font-medium text-slate-700">
+            At <span className="font-bold text-slate-900">{clinic.fullName}</span>, we
             combine the latest dental technology with a warm, family-friendly
             environment. Whether it&apos;s your child&apos;s first visit or a
             complex implant procedure, you can expect honest advice, transparent
@@ -87,14 +87,19 @@ export default function About() {
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {stats.map(({ icon: Icon, value, label }) => (
-              <div key={label} className="glass-card p-4 text-center">
+              <div
+                key={label}
+                className="water-glass rounded-2xl p-4 text-center"
+              >
                 <div className="mx-auto grid h-10 w-10 place-items-center rounded-xl bg-brand-50 text-brand-600">
                   <Icon size={18} />
                 </div>
                 <div className="mt-2 font-display text-xl font-bold text-slate-900">
                   {value}
                 </div>
-                <div className="text-xs text-slate-500">{label}</div>
+                <div className="text-xs font-semibold text-slate-600">
+                  {label}
+                </div>
               </div>
             ))}
           </div>

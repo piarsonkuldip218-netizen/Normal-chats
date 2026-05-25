@@ -80,9 +80,10 @@ export default function Services() {
                 }}
                 className="glass-card group relative overflow-hidden flex flex-col"
               >
-                {/* Image header (or icon-only fallback if no image set) */}
-                {s.image ? (
-                  <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br from-brand-100 to-accent-400/30">
+                {/* Image header — left fully visible (no dark overlay, no
+                    icon badge on top) so the photo isn't obstructed. */}
+                {s.image && (
+                  <div className="relative h-52 w-full overflow-hidden bg-slate-100">
                     <Image
                       src={asset(s.image)}
                       alt={s.title}
@@ -90,27 +91,22 @@ export default function Services() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    {/* Gradient overlay for visual depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/45 via-slate-900/5 to-transparent" />
-                    {/* Floating icon badge sits on image edge */}
-                    <div className="absolute -bottom-6 left-5 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow ring-4 ring-white">
-                      <Icon size={22} strokeWidth={2.2} />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-6 pb-0">
-                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
-                      <Icon size={26} strokeWidth={2} />
-                    </div>
+                    {/* Soft white fade ONLY at the very bottom so the image
+                        blends into the card body — does not cover content. */}
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white/85 to-transparent" />
                   </div>
                 )}
 
-                {/* Body */}
-                <div className={`flex-1 p-6 ${s.image ? "pt-9" : "pt-4"}`}>
-                  <h3 className="font-display text-lg font-semibold text-slate-900">
+                {/* Body — icon now lives here (not on top of the image),
+                    and text uses bolder weights for stronger hierarchy. */}
+                <div className="flex-1 p-6">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
+                    <Icon size={22} strokeWidth={2.2} />
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-bold text-slate-900">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">
                     {s.description}
                   </p>
 
@@ -118,7 +114,7 @@ export default function Services() {
                     href={wa}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition group-hover:gap-2.5"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 transition group-hover:gap-2.5"
                   >
                     Ask on WhatsApp
                     <ArrowRight size={14} />

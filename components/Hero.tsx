@@ -62,10 +62,10 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             custom={2}
-            className="mt-5 max-w-xl text-base text-slate-600 md:text-lg"
+            className="mt-5 max-w-xl text-base font-medium text-slate-700 md:text-lg"
           >
             Modern, painless and affordable dental care in Rangapara, Sonitpur — led by{" "}
-            <span className="font-semibold text-slate-800">
+            <span className="font-bold text-slate-900">
               Dr. Tabarak Hussain (B.D.S)
             </span>
             . From routine checkups to advanced implants, we bring expert care to your family.
@@ -99,35 +99,35 @@ export default function Hero() {
             custom={4}
             className="mt-8 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3"
           >
-            <div className="glass-card flex items-center gap-3 px-4 py-3">
+            <div className="water-glass flex items-center gap-3 rounded-2xl px-4 py-3">
               <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
                 <Clock size={18} />
               </div>
               <div>
-                <div className="text-xs text-slate-500">Open Daily</div>
-                <div className="text-sm font-semibold text-slate-800">
+                <div className="text-xs font-semibold text-slate-600">Open Daily</div>
+                <div className="text-sm font-bold text-slate-900">
                   10 AM – 8 PM
                 </div>
               </div>
             </div>
-            <div className="glass-card flex items-center gap-3 px-4 py-3">
+            <div className="water-glass flex items-center gap-3 rounded-2xl px-4 py-3">
               <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
                 <MapPin size={18} />
               </div>
               <div>
-                <div className="text-xs text-slate-500">Visit Us</div>
-                <div className="text-sm font-semibold text-slate-800">
+                <div className="text-xs font-semibold text-slate-600">Visit Us</div>
+                <div className="text-sm font-bold text-slate-900">
                   Rangapara, Sonitpur
                 </div>
               </div>
             </div>
-            <div className="glass-card flex items-center gap-3 px-4 py-3">
+            <div className="water-glass flex items-center gap-3 rounded-2xl px-4 py-3">
               <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
                 <Star size={18} />
               </div>
               <div>
-                <div className="text-xs text-slate-500">Rated</div>
-                <div className="text-sm font-semibold text-slate-800">
+                <div className="text-xs font-semibold text-slate-600">Rated</div>
+                <div className="text-sm font-bold text-slate-900">
                   4.8★ on Google
                 </div>
               </div>
@@ -147,29 +147,34 @@ export default function Hero() {
             <ToothModel />
           </div>
 
-          {/* Floating mini cards */}
+          {/* Floating mini cards — upgraded to water-glass for a more
+              tactile "drop of glass" feel against the 3D scene. */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-4 top-10 glass-card px-4 py-3 text-sm shadow-soft"
+            className="absolute left-4 top-10 water-glass rounded-2xl px-4 py-3 text-sm"
           >
             <div className="flex items-center gap-2">
               <div className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <div className="font-semibold text-slate-800">Painless Care</div>
+              <div className="font-bold text-slate-900">Painless Care</div>
             </div>
-            <div className="mt-1 text-xs text-slate-500">Latest anaesthesia</div>
+            <div className="mt-1 text-xs font-semibold text-slate-600">
+              Latest anaesthesia
+            </div>
           </motion.div>
 
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute right-4 bottom-10 glass-card px-4 py-3 text-sm shadow-soft"
+            className="absolute right-4 bottom-10 water-glass rounded-2xl px-4 py-3 text-sm"
           >
             <div className="flex items-center gap-2">
               <Star size={14} className="fill-amber-400 text-amber-400" />
-              <div className="font-semibold text-slate-800">68+ Reviews</div>
+              <div className="font-bold text-slate-900">68+ Reviews</div>
             </div>
-            <div className="mt-1 text-xs text-slate-500">Trusted by Sonitpur</div>
+            <div className="mt-1 text-xs font-semibold text-slate-600">
+              Trusted by Sonitpur
+            </div>
           </motion.div>
         </motion.div>
       </div>

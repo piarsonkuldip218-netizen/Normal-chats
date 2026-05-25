@@ -63,19 +63,19 @@ export default function Contact() {
           >
             <a
               href={`tel:${clinic.contact.phone}`}
-              className="glass-card flex items-start gap-4 p-5"
+              className="water-glass flex items-start gap-4 rounded-2xl p-5 transition hover:-translate-y-0.5"
             >
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white">
                 <Phone size={20} />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
                   Call Us
                 </div>
-                <div className="mt-1 font-semibold text-slate-900">
+                <div className="mt-1 font-bold text-slate-900">
                   {clinic.contact.phoneDisplay}
                 </div>
-                <div className="mt-1 text-xs text-slate-500">
+                <div className="mt-1 text-xs font-medium text-slate-600">
                   Tap to dial directly
                 </div>
               </div>
@@ -85,33 +85,33 @@ export default function Contact() {
               href={`https://wa.me/${clinic.contact.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card flex items-start gap-4 p-5"
+              className="water-glass flex items-start gap-4 rounded-2xl p-5 transition hover:-translate-y-0.5"
             >
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-500 text-white">
                 <MessageCircle size={20} />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
                   WhatsApp
                 </div>
-                <div className="mt-1 font-semibold text-slate-900">
+                <div className="mt-1 font-bold text-slate-900">
                   Chat with us instantly
                 </div>
-                <div className="mt-1 text-xs text-slate-500">
+                <div className="mt-1 text-xs font-medium text-slate-600">
                   Quick replies during clinic hours
                 </div>
               </div>
             </a>
 
-            <div className="glass-card flex items-start gap-4 p-5">
+            <div className="water-glass flex items-start gap-4 rounded-2xl p-5">
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white">
                 <MapPin size={20} />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
                   Address
                 </div>
-                <div className="mt-1 text-sm font-medium text-slate-900 leading-relaxed">
+                <div className="mt-1 text-sm font-semibold text-slate-900 leading-relaxed">
                   {clinic.address.line1},<br />
                   {clinic.address.line2},<br />
                   {clinic.address.line3},<br />
@@ -121,18 +121,18 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="glass-card flex items-start gap-4 p-5">
+            <div className="water-glass flex items-start gap-4 rounded-2xl p-5">
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white">
                 <Clock size={20} />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
                   Working Hours
                 </div>
-                <div className="mt-1 text-sm font-medium text-slate-900">
+                <div className="mt-1 text-sm font-bold text-slate-900">
                   Open all 7 days
                 </div>
-                <div className="mt-1 text-xs text-slate-500">
+                <div className="mt-1 text-xs font-medium text-slate-600">
                   10:00 AM – 8:00 PM
                 </div>
               </div>
