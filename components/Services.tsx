@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Stethoscope,
@@ -15,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { services, clinic } from "@/lib/data";
+import { asset } from "@/lib/path";
 
 const iconMap: Record<string, LucideIcon> = {
   Stethoscope,
@@ -27,6 +29,10 @@ const iconMap: Record<string, LucideIcon> = {
   Baby,
   Smile,
 };
+
+// Local type so we can read the optional `image` field that we just added
+// to entries in lib/data.ts without retyping the whole shape.
+type Service = (typeof services)[number] & { image?: string };
 
 export default function Services() {
   return (
@@ -56,7 +62,7 @@ export default function Services() {
         </motion.div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => {
+          {(services as Service[]).map((s, i) => {
             const Icon = iconMap[s.icon] ?? Sparkles;
             const wa = `https://wa.me/${clinic.contact.whatsapp}?text=${encodeURIComponent(
               `Hello TAMS Dental, I would like to know more about "${s.title}".`
@@ -72,16 +78,36 @@ export default function Services() {
                   delay: (i % 3) * 0.08,
                   ease: [0.2, 0.8, 0.2, 1],
                 }}
-                className="glass-card group relative overflow-hidden p-6"
+                className="glass-card group relative overflow-hidden flex flex-col"
               >
-                {/* Decorative gradient blob inside card on hover */}
-                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br from-brand-200/60 to-accent-400/40 blur-2xl opacity-0 transition group-hover:opacity-100" />
-
-                <div className="relative flex h-full flex-col">
-                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
-                    <Icon size={26} strokeWidth={2} />
+                {/* Image header (or icon-only fallback if no image set) */}
+                {s.image ? (
+                  <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br from-brand-100 to-accent-400/30">
+                    <Image
+                      src={asset(s.image)}
+                      alt={s.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    {/* Gradient overlay for visual depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/45 via-slate-900/5 to-transparent" />
+                    {/* Floating icon badge sits on image edge */}
+                    <div className="absolute -bottom-6 left-5 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow ring-4 ring-white">
+                      <Icon size={22} strokeWidth={2.2} />
+                    </div>
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-semibold text-slate-900">
+                ) : (
+                  <div className="p-6 pb-0">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
+                      <Icon size={26} strokeWidth={2} />
+                    </div>
+                  </div>
+                )}
+
+                {/* Body */}
+                <div className={`flex-1 p-6 ${s.image ? "pt-9" : "pt-4"}`}>
+                  <h3 className="font-display text-lg font-semibold text-slate-900">
                     {s.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">

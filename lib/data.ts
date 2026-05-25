@@ -47,16 +47,16 @@ export const clinic = {
   },
 };
 
-// Each service uses an icon-based card design (no photo) so we never risk
-// a mismatched image (e.g. an aligner photo on the extraction card).
-// When the client provides verified, treatment-specific photos, add an
-// `image` field per service and the Services component will start showing
-// them automatically.
+// Each service has a verified, treatment-specific photo provided by the
+// clinic. Photos live in /public/services/ and are referenced via the
+// optional `image` field; the Services component renders the photo as a
+// header above the icon + title + description block.
 export const services = [
   {
     slug: "general-checkup",
     title: "General Checkup & Cleaning",
     icon: "Stethoscope",
+    image: "/services/checkup.jpg",
     description:
       "Comprehensive oral examination, scaling, polishing and preventive care to keep your smile healthy.",
   },
@@ -64,6 +64,7 @@ export const services = [
     slug: "root-canal",
     title: "Root Canal Treatment",
     icon: "Activity",
+    image: "/services/rct.jpg",
     description:
       "Painless single-sitting RCT with modern rotary endodontics to save your natural tooth.",
   },
@@ -71,6 +72,7 @@ export const services = [
     slug: "extraction",
     title: "Tooth Extraction",
     icon: "Minus",
+    image: "/services/extraction.jpg",
     description:
       "Safe, gentle extractions including wisdom tooth removal under sterile conditions.",
   },
@@ -78,6 +80,7 @@ export const services = [
     slug: "implants",
     title: "Dental Implants",
     icon: "Anchor",
+    image: "/services/implants.jpg",
     description:
       "Permanent tooth replacement with high-grade titanium implants that look and feel natural.",
   },
@@ -85,6 +88,7 @@ export const services = [
     slug: "braces",
     title: "Braces & Orthodontics",
     icon: "AlignCenter",
+    image: "/services/braces.jpg",
     description:
       "Metal, ceramic and clear aligners to straighten teeth and correct bite issues for all ages.",
   },
@@ -92,6 +96,7 @@ export const services = [
     slug: "whitening",
     title: "Teeth Whitening",
     icon: "Sparkles",
+    image: "/services/whitening.jpg",
     description:
       "Professional in-clinic and take-home whitening for a brighter, more confident smile.",
   },
@@ -99,6 +104,7 @@ export const services = [
     slug: "crowns",
     title: "Crowns & Bridges",
     icon: "Crown",
+    image: "/services/crowns.jpg",
     description:
       "Durable zirconia and PFM crowns and bridges to restore broken or missing teeth.",
   },
@@ -106,6 +112,7 @@ export const services = [
     slug: "kids",
     title: "Kids Dentistry",
     icon: "Baby",
+    image: "/services/kids.jpg",
     description:
       "Friendly, fear-free pediatric dental care including fluoride, sealants and cavity treatment.",
   },
@@ -113,6 +120,7 @@ export const services = [
     slug: "cosmetic",
     title: "Cosmetic Dentistry",
     icon: "Smile",
+    image: "/services/cosmetic.jpg",
     description:
       "Veneers, smile makeovers and aesthetic procedures designed around your face and personality.",
   },
