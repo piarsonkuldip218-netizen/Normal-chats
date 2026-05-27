@@ -334,12 +334,12 @@ export const galleryPhotos: Array<{
   },
   {
     src: "/gallery/inside-1.jpg",
-    caption: "Modern, well-lit treatment room",
+    caption: "Comfortable, family-friendly clinic interior",
     category: "Interior",
   },
   {
     src: "/gallery/inside-2.jpg",
-    caption: "Comfortable, family-friendly clinic interior",
+    caption: "Modern, well-lit treatment room",
     category: "Interior",
   },
 ];
