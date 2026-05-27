@@ -105,15 +105,18 @@ export default function Technology() {
                   aria-label={`Learn more about ${t.title}`}
                   className="glass-card group relative flex flex-col overflow-hidden text-left"
                 >
-                  {/* Image area */}
-                  <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+                  {/* Image area — taller aspect-ratio + object-contain so
+                      the equipment is fully visible even when the source
+                      photo is portrait. Brand-tinted gradient backdrop
+                      fills any letterboxed space cleanly. */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60">
                     {t.image ? (
                       <Image
                         src={asset(t.image)}
                         alt={t.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     ) : (
                       <div className="grid h-full w-full place-items-center bg-gradient-to-br from-slate-900 via-brand-700 to-accent-600">
@@ -125,8 +128,6 @@ export default function Technology() {
                         {t.badge}
                       </div>
                     )}
-                    {/* Soft white fade so image blends into card body */}
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white/85 to-transparent" />
                   </div>
 
                   {/* Body */}
@@ -216,18 +217,18 @@ export default function Technology() {
                 <X size={20} />
               </button>
 
-              {/* Image header */}
+              {/* Image header — full equipment visible (object-contain) so
+                  patients see the actual machine, not a cropped slice. */}
               {active.image ? (
-                <div className="relative h-56 w-full overflow-hidden bg-slate-100 sm:h-72">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60 sm:aspect-[16/10]">
                   <Image
                     src={asset(active.image)}
                     alt={active.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 768px"
-                    className="object-cover"
+                    className="object-contain p-4"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
                   {active.badge && (
                     <div className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-700 shadow-soft">
                       {active.badge}

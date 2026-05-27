@@ -83,17 +83,18 @@ export default function Services() {
                 {/* Image header — left fully visible (no dark overlay, no
                     icon badge on top) so the photo isn't obstructed. */}
                 {s.image && (
-                  <div className="relative h-52 w-full overflow-hidden bg-slate-100">
+                  /* Taller aspect-ratio container + object-contain so the
+                     entire treatment photo is always visible — even when
+                     the source image is portrait. The brand-tinted gradient
+                     backdrop fills any letterboxed space cleanly. */
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60">
                     <Image
                       src={asset(s.image)}
                       alt={s.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
                     />
-                    {/* Soft white fade ONLY at the very bottom so the image
-                        blends into the card body — does not cover content. */}
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white/85 to-transparent" />
                   </div>
                 )}
 
