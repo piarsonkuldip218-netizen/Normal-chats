@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import Technology from "@/components/Technology";
 import About from "@/components/About";
 import WhyUs from "@/components/WhyUs";
+import Testimonials from "@/components/Testimonials";
 import Visit from "@/components/Visit";
 import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
@@ -29,6 +30,13 @@ export default function Home() {
         </div>
         <div className="perf-section">
           <WhyUs />
+        </div>
+        {/* Patient testimonials — verified Google reviews. Placed right after
+            "Why Us" so visitors see the brand promise immediately backed up
+            by 30+ real patient stories before they scroll on to clinic
+            visit info and booking. */}
+        <div className="perf-section">
+          <Testimonials />
         </div>
         {/* "Visit Our Clinic" — front-of-shop photo + address + Get Directions
             button. Sits between Why Us (trust signals) and Gallery (more

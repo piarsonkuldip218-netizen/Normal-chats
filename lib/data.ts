@@ -176,9 +176,9 @@ export type TechEquipment = {
   icon: string;
   badge?: string;
   image?: string;
-  description: string; // short, 3-4 lines, shown on card
-  longDescription?: string; // full paragraph for modal
-  benefits?: string[]; // bullet list shown in modal
+  description: string;
+  longDescription?: string;
+  benefits?: string[];
 };
 
 export const aiTechnology: TechEquipment[] = [
@@ -344,11 +344,232 @@ export const galleryPhotos: Array<{
   },
 ];
 
+// Verified Google reviews — copied verbatim from Google Business Profile.
+// Most are 5★; one is 4★ (clearly marked). Some long reviews were
+// truncated by Google's "...More" preview on mobile — the visible text
+// is preserved exactly as written and ends with "..." where truncated.
+export type Testimonial = {
+  name: string;
+  rating: number; // 5 or 4
+  date: string;
+  text: string;
+  treatment?: string; // short tag for filter / display
+  isLocalGuide?: boolean;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    name: "Jayanta Kalita",
+    rating: 5,
+    date: "1 year ago",
+    text: "Though the resident of Tezpur, I used to travel 20-25km to TAMS Dental clinic situated at Rangapara to treat all dental issues of my family only because this clinic has all the treatment options under one roof unlike in tezpur where even...",
+    treatment: "Family",
+  },
+  {
+    name: "Manoj",
+    rating: 5,
+    date: "2 years ago",
+    text: "Hi, This is Manoj and I am really very thankful to Dr Tabarak Hussain and TAMS DENTAL located in Rangapara. I had this issue since almost a decade. I had under gone RCT in 2004 when I was in Gujarat and since then I had been regularly facing...",
+    treatment: "RCT",
+    isLocalGuide: true,
+  },
+  {
+    name: "Niranjan Das",
+    rating: 5,
+    date: "1 year ago",
+    text: "I so happy.. my dental treatment Dr. Tabarak Hussain since 5 years. His treatment and found him best doctor for us. His behaviour is very nice. He has a well equipped hygienic chamber... Again thnx Dr Tabarak.. Hussain sir",
+    treatment: "Long-term patient",
+  },
+  {
+    name: "Jayanta Deb Roy",
+    rating: 5,
+    date: "4 years ago",
+    text: "Undoubtedly, it is the best Dental Clinic of Rangapara and probably of the entire surrounding. I want to thank Dr. Tabarak Hussain Ji for his selfless service. My entire family, right from my 8 year old daughter to 79 year old mother has...",
+    treatment: "Family",
+  },
+  {
+    name: "Paul Mahanta",
+    rating: 5,
+    date: "1 year ago",
+    text: "I know Dr. Tabarak Hussain since 4 years. In every kind of dental problems we have suffered, I with my family members have taken his treatment and found him best doctor for us. His behaviour is very nice. He has a well equipped hygienic chamber.",
+    treatment: "Family",
+  },
+  {
+    name: "Mamta Ram",
+    rating: 5,
+    date: "2 years ago",
+    text: "I did my RCT in one day, it's done very well, fully satisfied and his behaviour to patients just awesome. Thank you sir 🙏",
+    treatment: "RCT",
+  },
+  {
+    name: "Dibyajyoti Das",
+    rating: 5,
+    date: "2 years ago",
+    text: "I did my mother's RCT, it's done very well, fully satisfied. And his behaviour to patients just awesome...",
+    treatment: "RCT",
+  },
+  {
+    name: "Ashim Deka",
+    rating: 5,
+    date: "1 year ago",
+    text: "RCT done by Dr. Tabarak Hussain sir at TAMS Dental about three years ago. The same is in a very tremendous condition till now without any difficulties. Thanks a lot to Dr. Hussain sir for his brilliant effort in this regard.",
+    treatment: "RCT",
+  },
+  {
+    name: "Imran Ahmed",
+    rating: 5,
+    date: "2 years ago",
+    text: "I did RCT treatment 3 years ago. The tooth is still in proper condition. I have got good relief for this treatment. Thank you Tam's Dental",
+    treatment: "RCT",
+  },
+  {
+    name: "Mukul A. Maharaj",
+    rating: 5,
+    date: "6 years ago",
+    text: "I went to Dr. Tabarak Hussain's clinic on Jan 27th of this year. He extracted one of my teeth which was absolutely painless and for which I am very grateful. I had a very pleasant experience with Dr. Hussain and his staff. I was very...",
+    treatment: "Extraction",
+  },
+  {
+    name: "Sazida Ahmed",
+    rating: 5,
+    date: "4 years ago",
+    text: "Thank you sir for being so kind n being friendly to me. I am very happy and satisfied with your work. You are the best dentist I have ever visit...",
+  },
+  {
+    name: "Lakhyajyoti Deka",
+    rating: 5,
+    date: "5 years ago",
+    text: "Favourite n Marvellous Service. Because my Wife was suffering dental problem long time. Ghy. n Tezpur BDS cannot solve my wife but Dr. Tabarak Hussain solved the problem. Now my Wife completely clear.",
+    treatment: "Wife's case",
+  },
+  {
+    name: "Ronal Moniya",
+    rating: 5,
+    date: "6 years ago",
+    text: "Thanks to Dr. Tabarak Hussain for resolving my teeth issue.... iam glad that i completed my 3 RCT in your clinic... thnk u sir.... your response towards patient is very well behaved...... and your work is very clean and transparent....... i hope my teeth last longer period of time.... 🤞🤞",
+    treatment: "3 RCTs",
+  },
+  {
+    name: "Brahmananda Jha",
+    rating: 5,
+    date: "6 years ago",
+    text: "The Best and polite Dental Dr I have ever seen in my life. And what to say about Sitara Medical it is a one stop solution for any medicine related requirements...",
+  },
+  {
+    name: "Sahin Ahmed",
+    rating: 5,
+    date: "5 years ago",
+    text: "I have done my RCT 5 months ago... till now its very good and healthy satisfied. I prefer him bcoz of sound behaviour and descent nature....",
+    treatment: "RCT",
+  },
+  {
+    name: "Simanta Savapondit",
+    rating: 5,
+    date: "3 years ago",
+    text: "Very Good Dentist... Dr. Hussain is very much Skilled, Caring and Helpful to his patients.... Thank you Hussain Sir for your treatment.",
+  },
+  {
+    name: "Moloy Dutta",
+    rating: 5,
+    date: "1 year ago",
+    text: "My father's tooth has been extracted very carefully. Satisfied. Again after 3 years I went for RCT which is really successful.",
+    treatment: "Extraction + RCT",
+  },
+  {
+    name: "Angel Halder",
+    rating: 5,
+    date: "4 years ago",
+    text: "I extracted my tooth and it was wonderful. And I would definitely like to visit Dr Tabarak Hussain in future if I had any dental problem.",
+    treatment: "Extraction",
+  },
+  {
+    name: "Bhargab Haloi",
+    rating: 5,
+    date: "3 years ago",
+    text: "The doctor in this clinic is very friendly, all the equipments and machine are latest and I found a very friendly environment there. They have performed a tooth cap in my teeth which I found very comfortable.",
+    treatment: "Tooth cap",
+  },
+  {
+    name: "Durga Das",
+    rating: 5,
+    date: "2 years ago",
+    text: "I have done my RCT and zirconia capping 6 months ago which is really fine now.",
+    treatment: "RCT + Zirconia cap",
+  },
+  {
+    name: "Johar Adivasi",
+    rating: 5,
+    date: "2 years ago",
+    text: "I have done my front teeth filling two years ago, it's good now. Today I came with my cousin for his front teeth filling. Everything is good in this clinic.",
+    treatment: "Filling",
+  },
+  {
+    name: "Sumit Gupta",
+    rating: 5,
+    date: "5 years ago",
+    text: "I feel very comfortable in Dr Hussain's Dental Clinic.",
+  },
+  {
+    name: "Dharam Nahak",
+    rating: 5,
+    date: "4 years ago",
+    text: "Satisfied with Doctor Hussain's job. Good behavior, neat and clean environment.",
+  },
+  {
+    name: "Santosh Kondho",
+    rating: 5,
+    date: "3 years ago",
+    text: "Nice service provided by Dr Tabarak Hussain, thank you so much. You are very humble and polite...",
+  },
+  {
+    name: "Rajesh Sarkar",
+    rating: 5,
+    date: "6 years ago",
+    text: "The service is quick and responsive in this clinic. And also Dr Hussain is very active and good at his work..",
+    isLocalGuide: true,
+  },
+  {
+    name: "Yamdo Yapa",
+    rating: 5,
+    date: "6 years ago",
+    text: "I have done my RCT and my daughter's RCT which is really very good. Behavior is very good and decent..",
+    treatment: "RCT (self + daughter)",
+  },
+  {
+    name: "Rishabh Chakravarty",
+    rating: 5,
+    date: "6 years ago",
+    text: "Thanks to Dr. Tabarak Hussain for precisely extracting my infected tooth... and ofcourse with utmost care.",
+    treatment: "Extraction",
+  },
+  {
+    name: "Saurash Jyoti",
+    rating: 5,
+    date: "5 years ago",
+    text: "The experience is best. For my RCT I highly recommend 👍",
+    treatment: "RCT",
+  },
+  {
+    name: "Raayushi Biswas",
+    rating: 5,
+    date: "1 year ago",
+    text: "Best RCT.. This is 2nd time.",
+    treatment: "RCT",
+  },
+  {
+    name: "Binod Chetry",
+    rating: 4,
+    date: "1 year ago",
+    text: "In my opinion their treatment is good 👍",
+  },
+];
+
 export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Technology", href: "#technology" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Visit", href: "#visit" },
   { label: "Contact", href: "#contact" },
 ];
