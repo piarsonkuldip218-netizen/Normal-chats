@@ -3,7 +3,7 @@
 // https://<user>.github.io/<repo>/. We toggle this with the GITHUB_PAGES env
 // variable so local dev and Vercel deployments don't get the prefix.
 const isGhPages = process.env.GITHUB_PAGES === "true";
-const repo = "Normal-chats";
+const repo = "Tams-dental";
 const basePath = isGhPages ? `/${repo}` : "";
 
 const nextConfig = {
