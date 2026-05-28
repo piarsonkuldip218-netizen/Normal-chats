@@ -233,101 +233,127 @@ function TechModal({
   const { t } = useT();
   const copy = useTech(active.slug);
   return (
+    /* Outer overlay = the only scroll container. Uses overflow-y-auto +
+       a flex wrapper so on mobile (where content is taller than the
+       viewport) the modal scrolls from the top, while on larger screens
+       it centers vertically. Avoids the `grid place-items-center +
+       my-auto` pattern that was clipping the top of the modal on small
+       phones. */
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-slate-950/80 p-4 backdrop-blur"
+      className="fixed inset-0 z-[60] overflow-y-auto overscroll-contain bg-slate-950/85 backdrop-blur"
     >
-      <motion.div
-        key={active.slug}
-        initial={{ opacity: 0, scale: 0.95, y: 16 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 16 }}
-        transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative my-auto w-full max-w-3xl overflow-hidden rounded-3xl bg-white shadow-2xl"
+      {/* Close button is anchored to the viewport (not the modal card)
+          so it remains tappable even after the user scrolls within a
+          long modal on mobile. */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label="Close"
+        className="fixed right-3 top-3 z-[70] grid h-11 w-11 place-items-center rounded-full bg-white/95 text-slate-800 shadow-soft backdrop-blur transition hover:bg-white sm:right-4 sm:top-4"
+        style={{ marginTop: "env(safe-area-inset-top)" }}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-slate-700 shadow-soft backdrop-blur transition hover:bg-white"
+        <X size={20} />
+      </button>
+
+      <div className="flex min-h-full w-full items-start justify-center p-3 sm:items-center sm:p-6">
+        <motion.div
+          key={active.slug}
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: 12 }}
+          transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+          onClick={(e) => e.stopPropagation()}
+          className="relative w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl sm:rounded-3xl"
         >
-          <X size={20} />
-        </button>
-
-        {active.image ? (
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60 sm:aspect-[16/10]">
-            <Image
-              src={asset(active.image)}
-              alt={copy.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 768px"
-              className="object-contain p-4"
-              priority
-            />
-            {active.badge && (
-              <div className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-700 shadow-soft">
-                {active.badge}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="grid h-56 w-full place-items-center bg-gradient-to-br from-slate-900 via-brand-700 to-accent-600 sm:h-72" />
-        )}
-
-        <div className="p-6 md:p-8">
-          <h3 className="font-display text-2xl font-bold text-slate-900 md:text-3xl">
-            {copy.title}
-          </h3>
-
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
-            {copy.longDescription}
-          </p>
-
-          {copy.benefits.length > 0 && (
-            <div className="mt-6">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-                {t("tech.howItBenefits")}
-              </div>
-              <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
-                {copy.benefits.map((b) => (
-                  <li
-                    key={b}
-                    className="flex items-start gap-2 text-sm text-slate-700"
-                  >
-                    <CheckCircle2
-                      size={18}
-                      className="mt-0.5 shrink-0 text-brand-600"
-                    />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Image header — fixed pixel heights instead of aspect ratios
+              so the image never dominates the viewport on mobile. The
+              equipment is shown with object-contain so its full shape is
+              always visible. */}
+          {active.image ? (
+            <div className="relative h-52 w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60 sm:h-72 md:h-80">
+              <Image
+                src={asset(active.image)}
+                alt={copy.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-contain p-4"
+                priority
+              />
+              {active.badge && (
+                <div className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-700 shadow-soft">
+                  {active.badge}
+                </div>
+              )}
             </div>
+          ) : (
+            <div className="grid h-44 w-full place-items-center bg-gradient-to-br from-slate-900 via-brand-700 to-accent-600 sm:h-64" />
           )}
 
-          <div className="mt-7 flex flex-wrap gap-3 border-t border-slate-100 pt-6">
-            <a
-              href={`https://wa.me/${
-                clinic.contact.whatsapp
-              }?text=${encodeURIComponent(
-                `Hello TAMS Dental, I'd like to know more about your ${copy.title} and book an appointment.`
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              <MessageCircle size={18} /> {t("tech.bookOnWhatsapp")}
-            </a>
-            <a href={`tel:${clinic.contact.phone}`} className="btn-ghost">
-              {t("tech.callButton", { phone: clinic.contact.phoneDisplay })}
-            </a>
+          {/* Body — responsive padding so the content has breathing room
+              on small phones without wasting space on desktop. */}
+          <div className="p-5 sm:p-7 md:p-8">
+            <h3 className="font-display text-xl font-bold leading-tight text-slate-900 sm:text-2xl md:text-3xl">
+              {copy.title}
+            </h3>
+
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+              {copy.longDescription}
+            </p>
+
+            {copy.benefits.length > 0 && (
+              <div className="mt-5 sm:mt-6">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700 sm:text-xs">
+                  {t("tech.howItBenefits")}
+                </div>
+                <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                  {copy.benefits.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-start gap-2 text-sm text-slate-700"
+                    >
+                      <CheckCircle2
+                        size={18}
+                        className="mt-0.5 shrink-0 text-brand-600"
+                      />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* CTAs stack on mobile so each is a comfortable tap target,
+                row-wrap on larger screens. */}
+            <div className="mt-6 flex flex-col gap-3 border-t border-slate-100 pt-5 sm:mt-7 sm:flex-row sm:flex-wrap sm:pt-6">
+              <a
+                href={`https://wa.me/${
+                  clinic.contact.whatsapp
+                }?text=${encodeURIComponent(
+                  `Hello TAMS Dental, I'd like to know more about your ${copy.title} and book an appointment.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary justify-center sm:justify-start"
+              >
+                <MessageCircle size={18} /> {t("tech.bookOnWhatsapp")}
+              </a>
+              <a
+                href={`tel:${clinic.contact.phone}`}
+                className="btn-ghost justify-center sm:justify-start"
+              >
+                {t("tech.callButton", { phone: clinic.contact.phoneDisplay })}
+              </a>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }

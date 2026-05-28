@@ -121,17 +121,20 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] grid place-items-center bg-slate-950/90 p-4 backdrop-blur"
+            className="fixed inset-0 z-[60] overflow-y-auto overscroll-contain bg-slate-950/90 backdrop-blur"
             onClick={() => setActiveIndex(null)}
           >
+            {/* Viewport-anchored controls so they stay reachable while
+                the modal scrolls on small screens. */}
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveIndex(null);
               }}
-              className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+              className="fixed right-3 top-3 z-[70] grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white shadow-soft transition hover:bg-white/25 sm:right-5 sm:top-5"
               aria-label="Close"
+              style={{ marginTop: "env(safe-area-inset-top)" }}
             >
               <X size={22} />
             </button>
@@ -144,7 +147,7 @@ export default function Gallery() {
                   (activeIndex - 1 + galleryPhotos.length) % galleryPhotos.length
                 );
               }}
-              className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white transition hover:bg-white/25 sm:left-6"
+              className="fixed left-2 top-1/2 z-[70] grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white transition hover:bg-white/25 sm:left-6"
               aria-label="Previous"
             >
               <ChevronLeft size={24} />
@@ -156,35 +159,40 @@ export default function Gallery() {
                 e.stopPropagation();
                 setActiveIndex((activeIndex + 1) % galleryPhotos.length);
               }}
-              className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white transition hover:bg-white/25 sm:right-6"
+              className="fixed right-2 top-1/2 z-[70] grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white transition hover:bg-white/25 sm:right-6"
               aria-label="Next"
             >
               <ChevronRight size={24} />
             </button>
 
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="relative max-h-[85vh] w-full max-w-4xl overflow-hidden rounded-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative aspect-[4/3] w-full bg-slate-900">
-                <Image
-                  src={asset(galleryPhotos[activeIndex].src)}
-                  alt={galleryPhotos[activeIndex].caption}
-                  fill
-                  sizes="(max-width: 1024px) 90vw, 1024px"
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/85 to-transparent p-4">
-                <LightboxCaption index={activeIndex} total={galleryPhotos.length} />
-              </div>
-            </motion.div>
+            <div className="flex min-h-full w-full items-center justify-center p-4 sm:p-8">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.22 }}
+                className="relative w-full max-w-4xl overflow-hidden rounded-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative aspect-[4/3] w-full bg-slate-900 sm:aspect-[16/10]">
+                  <Image
+                    src={asset(galleryPhotos[activeIndex].src)}
+                    alt={galleryPhotos[activeIndex].caption}
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 1024px"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/85 to-transparent p-4">
+                  <LightboxCaption
+                    index={activeIndex}
+                    total={galleryPhotos.length}
+                  />
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
