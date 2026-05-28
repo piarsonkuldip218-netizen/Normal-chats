@@ -1,0 +1,425 @@
+"use client";
+
+/**
+ * Lightweight client-side i18n for TAMS Dental.
+ *
+ * - Three locales: English (en), Hindi (hi), Assamese (as)
+ * - Choice persists via localStorage
+ * - Updates <html lang> attribute for screen readers + SEO
+ * - Falls back to English when a key is not translated yet, so we can
+ *   ship partial translations and iterate over time without breaking
+ *   the UI.
+ *
+ * Usage in any client component:
+ *   const { t, locale, setLocale } = useT();
+ *   <h2>{t("hero.headline")}</h2>
+ */
+
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+
+export type Locale = "en" | "hi" | "as";
+
+export const LOCALES: Array<{
+  code: Locale;
+  short: string;
+  native: string;
+}> = [
+  { code: "en", short: "EN", native: "English" },
+  { code: "hi", short: "हिं", native: "हिन्दी" },
+  { code: "as", short: "অস", native: "অসমীয়া" },
+];
+
+// All translatable strings live here. Add new keys to `en` first
+// (always required), then translate to `hi` and `as`. Untranslated
+// keys gracefully fall back to English at runtime.
+const dict = {
+  en: {
+    // Language switcher
+    "lang.label": "Language",
+
+    // Navbar
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.services": "Services",
+    "nav.technology": "Technology",
+    "nav.whyUs": "Why Us",
+    "nav.gallery": "Gallery",
+    "nav.reviews": "Reviews",
+    "nav.visit": "Visit",
+    "nav.contact": "Contact",
+    "nav.callNow": "Call Now",
+
+    // Hero
+    "hero.reviewsBadge": "{score}/5 from {reviews}+ Google Reviews",
+    "hero.headlinePart1": "Your",
+    "hero.headlineEmphasis": "Healthy Smile",
+    "hero.headlinePart2": "Starts at TAMS Dental",
+    "hero.subhead":
+      "Modern, painless and affordable dental care in Rangapara, Sonitpur — led by {doctor}. From routine checkups to advanced implants, we bring expert care to your family.",
+    "hero.bookAppointment": "Book Appointment",
+    "hero.whatsappUs": "WhatsApp Us",
+    "hero.openDaily": "Open Daily",
+    "hero.hoursValue": "10 AM – 8 PM",
+    "hero.visitUs": "Visit Us",
+    "hero.locationValue": "Rangapara, Sonitpur",
+    "hero.rated": "Rated",
+    "hero.ratedValue": "4.8★ on Google",
+    "hero.painlessCare": "Painless Care",
+    "hero.latestAnaesthesia": "Latest anaesthesia",
+    "hero.reviewsCount": "68+ Reviews",
+    "hero.trustedBy": "Trusted by Sonitpur",
+
+    // Floating buttons
+    "float.chatWhatsapp": "Chat on WhatsApp",
+    "float.callClinic": "Call {phone}",
+
+    // About
+    "about.eyebrow": "About Us",
+    "about.title": "Compassionate Care, Modern Dentistry",
+    "about.statHappyPatients": "Happy Patients",
+    "about.statServices": "Services Offered",
+    "about.statRating": "Google Rating",
+    "about.statQualified": "Qualified Dentist",
+    "about.subParagraph":
+      "At {clinic}, we combine the latest dental technology with a warm, family-friendly environment. Whether it's your child's first visit or a complex implant procedure, you can expect honest advice, transparent pricing and gentle hands.",
+
+    // Services
+    "services.eyebrow": "Our Services",
+    "services.title": "Complete Dental Care Under One Roof",
+    "services.subhead":
+      "From routine cleanings to advanced cosmetic procedures — we offer the full spectrum of modern dentistry with the latest equipment and techniques.",
+
+    // Technology
+    "tech.eyebrow": "Advanced Technology",
+    "tech.title": "Modern Equipment for Better Care",
+    "tech.subhead":
+      "Every machine you see here is what makes our treatments faster, safer and more comfortable than a typical clinic. Tap any card to learn how it benefits you.",
+
+    // Why Us
+    "why.eyebrow": "Why Choose Us",
+    "why.titleLine1": "Trusted by Families Across",
+    "why.titleLine2": "Rangapara & Sonitpur",
+    "why.subhead":
+      "We focus on three things: comfort, clinical excellence and clear communication. Here's what makes patients keep coming back.",
+
+    // Testimonials
+    "reviews.eyebrow": "Patient Stories",
+    "reviews.title": "Trusted by Families Across Sonitpur",
+    "reviews.subhead":
+      "Real, verified reviews from {reviews}+ patients on Google. Every word below is exactly what they wrote — nothing edited, nothing added.",
+    "reviews.statAvg": "Average Google rating",
+    "reviews.stat5Star": "5-star reviews",
+    "reviews.statVerified": "Verified reviews",
+    "reviews.showMore": "Show more reviews",
+    "reviews.showFewer": "Show fewer reviews",
+    "reviews.readOnGoogle": "Read all reviews on Google",
+    "reviews.originalLangNote":
+      "Reviews are shown in the original language as posted on Google.",
+
+    // Visit
+    "visit.eyebrow": "Visit Our Clinic",
+    "visit.title": "You'll Find Us in the Heart of Rangapara",
+    "visit.subhead":
+      "Located on the ground floor of Naman Bhawan, opposite Joydev Cinema Hall — easy to spot, comfortable to walk into.",
+
+    // Gallery
+    "gallery.eyebrow": "Gallery",
+    "gallery.title": "A Look Inside TAMS Dental",
+    "gallery.subhead":
+      "Take a peek at our modern clinic, advanced equipment and the comfortable environment we've built for our patients.",
+
+    // Contact
+    "contact.eyebrow": "Contact & Appointment",
+    "contact.title": "Book Your Visit Today",
+    "contact.subhead":
+      "Walk in, call, or send us a quick WhatsApp message — we're happy to answer your questions and schedule a convenient time.",
+
+    // Footer
+    "footer.brandDesc":
+      "Modern, painless and affordable dental care in Rangapara, Sonitpur — led by Dr. Tabarak Hussain (B.D.S).",
+    "footer.quickLinks": "Quick Links",
+    "footer.services": "Services",
+    "footer.reachUs": "Reach Us",
+    "footer.rights": "All rights reserved.",
+    "footer.designed": "Designed with care for healthy smiles.",
+  },
+
+  hi: {
+    "lang.label": "भाषा",
+
+    "nav.home": "होम",
+    "nav.about": "परिचय",
+    "nav.services": "सेवाएँ",
+    "nav.technology": "तकनीक",
+    "nav.whyUs": "हम क्यों",
+    "nav.gallery": "गैलरी",
+    "nav.reviews": "समीक्षाएँ",
+    "nav.visit": "पहुँचें",
+    "nav.contact": "संपर्क",
+    "nav.callNow": "अभी कॉल करें",
+
+    "hero.reviewsBadge": "{reviews}+ गूगल समीक्षाओं से {score}/5",
+    "hero.headlinePart1": "आपकी",
+    "hero.headlineEmphasis": "स्वस्थ मुस्कान",
+    "hero.headlinePart2": "TAMS Dental से शुरू",
+    "hero.subhead":
+      "रंगापारा, सोनितपुर में आधुनिक, दर्द-रहित और किफायती दंत चिकित्सा — {doctor} के नेतृत्व में। नियमित जाँच से लेकर आधुनिक इम्प्लांट तक, हम आपके परिवार को विशेषज्ञ देखभाल देते हैं।",
+    "hero.bookAppointment": "अपॉइंटमेंट बुक करें",
+    "hero.whatsappUs": "WhatsApp पर मैसेज करें",
+    "hero.openDaily": "रोज़ खुला",
+    "hero.hoursValue": "10 AM – 8 PM",
+    "hero.visitUs": "हमसे मिलें",
+    "hero.locationValue": "रंगापारा, सोनितपुर",
+    "hero.rated": "रेटिंग",
+    "hero.ratedValue": "गूगल पर 4.8★",
+    "hero.painlessCare": "दर्द-रहित देखभाल",
+    "hero.latestAnaesthesia": "आधुनिक एनेस्थीसिया",
+    "hero.reviewsCount": "68+ समीक्षाएँ",
+    "hero.trustedBy": "सोनितपुर का भरोसा",
+
+    "float.chatWhatsapp": "WhatsApp पर चैट करें",
+    "float.callClinic": "कॉल करें {phone}",
+
+    "about.eyebrow": "हमारे बारे में",
+    "about.title": "सहानुभूति भरी देखभाल, आधुनिक दंत चिकित्सा",
+    "about.statHappyPatients": "खुश मरीज़",
+    "about.statServices": "उपलब्ध सेवाएँ",
+    "about.statRating": "गूगल रेटिंग",
+    "about.statQualified": "योग्य दंत चिकित्सक",
+    "about.subParagraph":
+      "{clinic} में हम नवीनतम दंत तकनीक को एक गर्मजोश, परिवार-अनुकूल माहौल के साथ जोड़ते हैं। चाहे आपके बच्चे की पहली विज़िट हो या जटिल इम्प्लांट प्रक्रिया, आपको ईमानदार सलाह, पारदर्शी कीमतें और कोमल हाथ मिलेंगे।",
+
+    "services.eyebrow": "हमारी सेवाएँ",
+    "services.title": "एक ही छत के नीचे संपूर्ण दंत चिकित्सा",
+    "services.subhead":
+      "नियमित सफाई से लेकर आधुनिक कॉस्मेटिक प्रक्रियाओं तक — हम नवीनतम उपकरणों और तकनीकों के साथ आधुनिक दंत चिकित्सा का पूरा दायरा प्रदान करते हैं।",
+
+    "tech.eyebrow": "उन्नत तकनीक",
+    "tech.title": "बेहतर देखभाल के लिए आधुनिक उपकरण",
+    "tech.subhead":
+      "यहाँ दिखाई गई हर मशीन हमारे इलाज को सामान्य क्लिनिक से तेज़, सुरक्षित और अधिक आरामदायक बनाती है। कार्ड पर टैप करें और जानें यह आपको कैसे फायदा देती है।",
+
+    "why.eyebrow": "हमें क्यों चुनें",
+    "why.titleLine1": "रंगापारा व सोनितपुर के परिवारों का",
+    "why.titleLine2": "भरोसा हम पर",
+    "why.subhead":
+      "हम तीन चीज़ों पर ध्यान देते हैं: आराम, क्लिनिकल उत्कृष्टता और स्पष्ट संवाद। यही वजह है कि मरीज़ बार-बार लौटते हैं।",
+
+    "reviews.eyebrow": "मरीज़ों की कहानियाँ",
+    "reviews.title": "सोनितपुर के परिवारों का भरोसा",
+    "reviews.subhead":
+      "गूगल पर {reviews}+ मरीज़ों की असली, सत्यापित समीक्षाएँ। नीचे जो लिखा है वही जैसा मरीज़ों ने लिखा था — कुछ भी बदला नहीं गया।",
+    "reviews.statAvg": "औसत गूगल रेटिंग",
+    "reviews.stat5Star": "5-स्टार समीक्षाएँ",
+    "reviews.statVerified": "सत्यापित समीक्षाएँ",
+    "reviews.showMore": "और समीक्षाएँ देखें",
+    "reviews.showFewer": "कम समीक्षाएँ दिखाएँ",
+    "reviews.readOnGoogle": "गूगल पर सभी समीक्षाएँ पढ़ें",
+    "reviews.originalLangNote":
+      "समीक्षाएँ उसी भाषा में दिखाई गई हैं जिसमें वे गूगल पर पोस्ट की गई थीं।",
+
+    "visit.eyebrow": "हमारे क्लिनिक पधारें",
+    "visit.title": "आप हमें रंगापारा के बीच में ही पाएँगे",
+    "visit.subhead":
+      "नमन भवन के ग्राउंड फ्लोर पर, जॉयदेव सिनेमा हॉल के सामने — आसानी से दिखता है, अंदर आना आरामदायक है।",
+
+    "gallery.eyebrow": "गैलरी",
+    "gallery.title": "TAMS Dental की एक झलक",
+    "gallery.subhead":
+      "हमारे आधुनिक क्लिनिक, उन्नत उपकरणों और मरीज़ों के लिए बनाए गए आरामदायक माहौल की एक झलक देखें।",
+
+    "contact.eyebrow": "संपर्क व अपॉइंटमेंट",
+    "contact.title": "आज ही अपनी विज़िट बुक करें",
+    "contact.subhead":
+      "वॉक-इन करें, कॉल करें, या तुरंत WhatsApp मैसेज भेजें — हमें आपके सवालों के जवाब देने और सुविधाजनक समय तय करने में खुशी होगी।",
+
+    "footer.brandDesc":
+      "रंगापारा, सोनितपुर में आधुनिक, दर्द-रहित और किफायती दंत चिकित्सा — डॉ. तबारक हुसैन (B.D.S) के नेतृत्व में।",
+    "footer.quickLinks": "त्वरित लिंक",
+    "footer.services": "सेवाएँ",
+    "footer.reachUs": "हमें कॉल करें",
+    "footer.rights": "सर्वाधिकार सुरक्षित।",
+    "footer.designed": "स्वस्थ मुस्कानों के लिए सावधानी से बनाया गया।",
+  },
+
+  as: {
+    "lang.label": "ভাষা",
+
+    "nav.home": "হোম",
+    "nav.about": "পৰিচয়",
+    "nav.services": "সেৱা",
+    "nav.technology": "প্ৰযুক্তি",
+    "nav.whyUs": "আমি কিয়",
+    "nav.gallery": "গেলেৰী",
+    "nav.reviews": "পৰ্যালোচনা",
+    "nav.visit": "ক্লিনিকলৈ আহক",
+    "nav.contact": "যোগাযোগ",
+    "nav.callNow": "এতিয়াই কল কৰক",
+
+    "hero.reviewsBadge": "{reviews}+ গুগল পৰ্যালোচনাৰ পৰা {score}/৫",
+    "hero.headlinePart1": "আপোনাৰ",
+    "hero.headlineEmphasis": "সুস্থ হাঁহি",
+    "hero.headlinePart2": "TAMS Dental ৰ পৰা আৰম্ভ",
+    "hero.subhead":
+      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিনা যন্ত্ৰণা আৰু সুলভ দাঁতৰ চিকিৎসা — {doctor}ৰ নেতৃত্বত। সাধাৰণ পৰীক্ষাৰ পৰা উন্নত ইম্প্ল্যাণ্টলৈকে, আমি আপোনাৰ পৰিয়াললৈ বিশেষজ্ঞ যত্ন আনিছোঁ।",
+    "hero.bookAppointment": "এপইণ্টমেণ্ট বুক কৰক",
+    "hero.whatsappUs": "হোৱাটছএপত মেছেজ কৰক",
+    "hero.openDaily": "দৈনিক খোলা",
+    "hero.hoursValue": "10 AM – 8 PM",
+    "hero.visitUs": "আমাৰ ক্লিনিকলৈ আহক",
+    "hero.locationValue": "ৰঙাপাৰা, শোণিতপুৰ",
+    "hero.rated": "ৰেটিং",
+    "hero.ratedValue": "গুগলত ৪.৮★",
+    "hero.painlessCare": "বিনা যন্ত্ৰণা চিকিৎসা",
+    "hero.latestAnaesthesia": "আধুনিক এনেস্থেছিয়া",
+    "hero.reviewsCount": "৬৮+ পৰ্যালোচনা",
+    "hero.trustedBy": "শোণিতপুৰৰ ভৰসা",
+
+    "float.chatWhatsapp": "হোৱাটছএপত চেট কৰক",
+    "float.callClinic": "কল কৰক {phone}",
+
+    "about.eyebrow": "আমাৰ বিষয়ে",
+    "about.title": "সহানুভূতিশীল যত্ন, আধুনিক দন্তচিকিৎসা",
+    "about.statHappyPatients": "সুখী ৰোগী",
+    "about.statServices": "প্ৰদান কৰা সেৱা",
+    "about.statRating": "গুগল ৰেটিং",
+    "about.statQualified": "যোগ্য ডেণ্টিষ্ট",
+    "about.subParagraph":
+      "{clinic}ত আমি আধুনিক দাঁতৰ প্ৰযুক্তিৰ সৈতে এক উষ্ণ, পৰিয়ালবন্ধু পৰিৱেশ একত্ৰিত কৰিছোঁ। আপোনাৰ সন্তানৰ প্ৰথম ভ্ৰমণ হওক বা জটিল ইম্প্ল্যাণ্ট প্ৰক্ৰিয়া, আপুনি সৎ পৰামৰ্শ, পৰিষ্কাৰ মূল্য আৰু কোমল হাত পাব।",
+
+    "services.eyebrow": "আমাৰ সেৱা",
+    "services.title": "এটাই ছাদৰ তলত সম্পূৰ্ণ দাঁতৰ চিকিৎসা",
+    "services.subhead":
+      "সাধাৰণ পৰিষ্কাৰৰ পৰা উন্নত প্ৰসাধনী প্ৰক্ৰিয়ালৈকে — আমি আধুনিক সঁজুলি আৰু কৌশলৰ সৈতে আধুনিক দন্তচিকিৎসাৰ সম্পূৰ্ণ পৰিসৰ আগবঢ়াওঁ।",
+
+    "tech.eyebrow": "উন্নত প্ৰযুক্তি",
+    "tech.title": "উন্নত যত্নৰ বাবে আধুনিক সঁজুলি",
+    "tech.subhead":
+      "ইয়াত দেখা প্ৰতিটো যন্ত্ৰই আমাৰ চিকিৎসাক সাধাৰণ ক্লিনিকতকৈ দ্ৰুত, সুৰক্ষিত আৰু আৰামদায়ক কৰি তোলে। যিকোনো কাৰ্ড টেপ কৰি জানি লওক এইটোৱে আপোনাক কেনেদৰে সহায় কৰে।",
+
+    "why.eyebrow": "আমাক কিয় বাছিব",
+    "why.titleLine1": "ৰঙাপাৰা আৰু শোণিতপুৰৰ",
+    "why.titleLine2": "পৰিয়ালসকলৰ ভৰসা",
+    "why.subhead":
+      "আমি তিনিটা কথাত মনোযোগ দিওঁ: আৰাম, ক্লিনিকেল উৎকৃষ্টতা আৰু স্পষ্ট যোগাযোগ। ইয়াৰ বাবেই ৰোগীসকল বাৰে বাৰে উভতি আহে।",
+
+    "reviews.eyebrow": "ৰোগীৰ কাহিনী",
+    "reviews.title": "শোণিতপুৰৰ পৰিয়ালসকলৰ ভৰসা",
+    "reviews.subhead":
+      "গুগলত {reviews}+ ৰোগীৰ পৰা সঁচা, সত্যাপিত পৰ্যালোচনা। তলত যি লিখা আছে সেইটো ৰোগীসকলে যেনেকৈ লিখিছিল — একো সলোৱা হোৱা নাই।",
+    "reviews.statAvg": "গড় গুগল ৰেটিং",
+    "reviews.stat5Star": "৫-ষ্টাৰ পৰ্যালোচনা",
+    "reviews.statVerified": "সত্যাপিত পৰ্যালোচনা",
+    "reviews.showMore": "অধিক পৰ্যালোচনা চাওক",
+    "reviews.showFewer": "কম পৰ্যালোচনা দেখুৱাওক",
+    "reviews.readOnGoogle": "গুগলত সকলো পৰ্যালোচনা পঢ়ক",
+    "reviews.originalLangNote":
+      "পৰ্যালোচনাসমূহ গুগলত পোষ্ট কৰা মূল ভাষাত দেখুওৱা হৈছে।",
+
+    "visit.eyebrow": "আমাৰ ক্লিনিক ভ্ৰমণ কৰক",
+    "visit.title": "ৰঙাপাৰাৰ মাজতেই আপুনি আমাক পাব",
+    "visit.subhead":
+      "নমন ভৱনৰ গ্ৰাউণ্ড ফ্লোৰত, জয়দেৱ চিনেমা হলৰ বিপৰীতে — সহজে দেখা যায়, ভিতৰলৈ আহিবলৈ আৰামদায়ক।",
+
+    "gallery.eyebrow": "গেলেৰী",
+    "gallery.title": "TAMS Dental ৰ এটি ঝলক",
+    "gallery.subhead":
+      "আমাৰ আধুনিক ক্লিনিক, উন্নত সঁজুলি আৰু ৰোগীসকলৰ বাবে গঢ়া আৰামদায়ক পৰিৱেশৰ এটি ঝলক চাওক।",
+
+    "contact.eyebrow": "যোগাযোগ আৰু এপইণ্টমেণ্ট",
+    "contact.title": "আজিয়েই আপোনাৰ ভ্ৰমণ বুক কৰক",
+    "contact.subhead":
+      "ৱাক-ইন কৰক, কল কৰক, বা এটা দ্ৰুত হোৱাটছএপ মেছেজ পঠাওক — আপোনাৰ প্ৰশ্নৰ উত্তৰ দিবলৈ আৰু সুবিধাজনক সময় ঠিক কৰিবলৈ আমি আনন্দিত।",
+
+    "footer.brandDesc":
+      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিনা যন্ত্ৰণা আৰু সুলভ দাঁতৰ চিকিৎসা — ডাঃ তবাৰক হুছেইন (B.D.S)ৰ নেতৃত্বত।",
+    "footer.quickLinks": "দ্ৰুত লিংক",
+    "footer.services": "সেৱা",
+    "footer.reachUs": "আমাৰ লগত যোগাযোগ",
+    "footer.rights": "সকলো অধিকাৰ সংৰক্ষিত।",
+    "footer.designed": "সুস্থ হাঁহিৰ বাবে যত্নেৰে গঢ়া।",
+  },
+} as const;
+
+export type TKey = keyof (typeof dict)["en"];
+
+type Vars = Record<string, string | number>;
+
+function format(template: string, vars?: Vars): string {
+  if (!vars) return template;
+  return template.replace(/\{(\w+)\}/g, (m, key) =>
+    Object.prototype.hasOwnProperty.call(vars, key) ? String(vars[key]) : m
+  );
+}
+
+interface LanguageContextValue {
+  locale: Locale;
+  setLocale: (l: Locale) => void;
+  t: (key: TKey, vars?: Vars) => string;
+}
+
+const LanguageContext = createContext<LanguageContextValue>({
+  locale: "en",
+  setLocale: () => undefined,
+  t: (key) => key,
+});
+
+const STORAGE_KEY = "tams-locale";
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [locale, setLocaleState] = useState<Locale>("en");
+
+  // Hydrate from localStorage on mount (client-only).
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
+      if (saved === "en" || saved === "hi" || saved === "as") {
+        setLocaleState(saved);
+        document.documentElement.lang = saved;
+      }
+    } catch {
+      // localStorage may be blocked (private mode); ignore.
+    }
+  }, []);
+
+  const setLocale = (l: Locale) => {
+    setLocaleState(l);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, l);
+      document.documentElement.lang = l;
+    } catch {
+      // ignore
+    }
+  };
+
+  const value = useMemo<LanguageContextValue>(
+    () => ({
+      locale,
+      setLocale,
+      t: (key, vars) => {
+        const localeDict = dict[locale] as Record<string, string>;
+        const enDict = dict.en as Record<string, string>;
+        const template = localeDict[key] ?? enDict[key] ?? key;
+        return format(template, vars);
+      },
+    }),
+    [locale]
+  );
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useT(): LanguageContextValue {
+  return useContext(LanguageContext);
+}

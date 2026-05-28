@@ -5,11 +5,28 @@ import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
 import Logo from "./Logo";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { clinic, navLinks } from "@/lib/data";
+import { useT, type TKey } from "@/lib/i18n";
+
+// Map data-driven hrefs to translation keys so adding a new locale or
+// renaming a link only requires touching lib/i18n.tsx.
+const navKey: Record<string, TKey> = {
+  "#home": "nav.home",
+  "#about": "nav.about",
+  "#services": "nav.services",
+  "#technology": "nav.technology",
+  "#why-us": "nav.whyUs",
+  "#gallery": "nav.gallery",
+  "#reviews": "nav.reviews",
+  "#visit": "nav.visit",
+  "#contact": "nav.contact",
+};
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useT();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -46,18 +63,21 @@ export default function Navbar() {
                   href={link.href}
                   className="rounded-full px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-white/70 hover:text-brand-700"
                 >
-                  {link.label}
+                  {navKey[link.href] ? t(navKey[link.href]) : link.label}
                 </a>
               </li>
             ))}
           </ul>
 
           <div className="flex items-center gap-2">
+            {/* Desktop language switcher */}
+            <LanguageSwitcher className="hidden md:inline-flex" />
+
             <a
               href={`tel:${clinic.contact.phone}`}
               className="hidden md:inline-flex btn-primary !py-2.5 !px-5 text-sm"
             >
-              <Phone size={16} /> Call Now
+              <Phone size={16} /> {t("nav.callNow")}
             </a>
             <button
               type="button"
@@ -89,17 +109,21 @@ export default function Navbar() {
                       onClick={() => setOpen(false)}
                       className="block rounded-xl px-4 py-3 font-medium text-slate-700 hover:bg-white/70 hover:text-brand-700"
                     >
-                      {link.label}
+                      {navKey[link.href] ? t(navKey[link.href]) : link.label}
                     </a>
                   </li>
                 ))}
+                <li className="mt-3 px-2">
+                  {/* Mobile language switcher */}
+                  <LanguageSwitcher className="w-full justify-center" />
+                </li>
                 <li className="mt-2">
                   <a
                     href={`tel:${clinic.contact.phone}`}
                     onClick={() => setOpen(false)}
                     className="btn-primary w-full"
                   >
-                    <Phone size={16} /> Call Now
+                    <Phone size={16} /> {t("nav.callNow")}
                   </a>
                 </li>
               </ul>

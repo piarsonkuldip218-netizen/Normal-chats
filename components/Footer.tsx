@@ -1,8 +1,24 @@
+"use client";
+
 import Logo from "./Logo";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
 import { clinic, navLinks, services } from "@/lib/data";
+import { useT, type TKey } from "@/lib/i18n";
+
+const navKey: Record<string, TKey> = {
+  "#home": "nav.home",
+  "#about": "nav.about",
+  "#services": "nav.services",
+  "#technology": "nav.technology",
+  "#why-us": "nav.whyUs",
+  "#gallery": "nav.gallery",
+  "#reviews": "nav.reviews",
+  "#visit": "nav.visit",
+  "#contact": "nav.contact",
+};
 
 export default function Footer() {
+  const { t } = useT();
   return (
     <footer className="relative overflow-hidden bg-slate-950 text-slate-300">
       <div className="absolute -top-32 left-1/2 h-72 w-[80%] -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-600/30 via-accent-500/20 to-brand-600/30 blur-3xl" />
@@ -15,8 +31,7 @@ export default function Footer() {
               <Logo />
             </div>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
-              Modern, painless and affordable dental care in Rangapara,
-              Sonitpur — led by Dr. Tabarak Hussain (B.D.S).
+              {t("footer.brandDesc")}
             </p>
             <div className="mt-5 flex items-center gap-3">
               <SocialIcon href={clinic.social.facebook} label="Facebook">
@@ -34,7 +49,7 @@ export default function Footer() {
           {/* Quick links */}
           <div>
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
-              Quick Links
+              {t("footer.quickLinks")}
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
               {navLinks.map((l) => (
@@ -43,7 +58,7 @@ export default function Footer() {
                     href={l.href}
                     className="text-slate-400 transition hover:text-brand-300"
                   >
-                    {l.label}
+                    {navKey[l.href] ? t(navKey[l.href]) : l.label}
                   </a>
                 </li>
               ))}
@@ -53,7 +68,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
-              Services
+              {t("footer.services")}
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
               {services.slice(0, 6).map((s) => (
@@ -72,7 +87,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
-              Reach Us
+              {t("footer.reachUs")}
             </h4>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-3">
@@ -108,11 +123,9 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {clinic.fullName}. All rights reserved.
+            © {new Date().getFullYear()} {clinic.fullName}. {t("footer.rights")}
           </p>
-          <p>
-            Designed with care for healthy smiles.
-          </p>
+          <p>{t("footer.designed")}</p>
         </div>
       </div>
     </footer>

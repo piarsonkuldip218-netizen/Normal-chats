@@ -5,15 +5,16 @@ import { motion } from "framer-motion";
 import { GraduationCap, Award, Users, Stethoscope } from "lucide-react";
 import { clinic } from "@/lib/data";
 import { asset } from "@/lib/path";
-
-const stats = [
-  { icon: Users, value: "1000+", label: "Happy Patients" },
-  { icon: Stethoscope, value: "9+", label: "Services Offered" },
-  { icon: Award, value: "4.8★", label: "Google Rating" },
-  { icon: GraduationCap, value: "B.D.S", label: "Qualified Dentist" },
-];
+import { useT } from "@/lib/i18n";
 
 export default function About() {
+  const { t } = useT();
+  const stats = [
+    { icon: Users, value: "1000+", label: t("about.statHappyPatients") },
+    { icon: Stethoscope, value: "9+", label: t("about.statServices") },
+    { icon: Award, value: "4.8★", label: t("about.statRating") },
+    { icon: GraduationCap, value: "B.D.S", label: t("about.statQualified") },
+  ];
   return (
     <section id="about" className="relative py-20 md:py-28">
       <div className="blob top-10 left-[-100px] h-80 w-80 bg-brand-300" />
@@ -69,20 +70,16 @@ export default function About() {
           transition={{ duration: 0.7 }}
         >
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-            About Us
+            {t("about.eyebrow")}
           </span>
           <h2 className="section-title mt-4">
-            Compassionate Care, Modern Dentistry
+            {t("about.title")}
           </h2>
           <p className="mt-4 text-slate-600">
             {clinic.doctor.bio}
           </p>
           <p className="mt-3 text-slate-600">
-            At <span className="font-semibold text-slate-800">{clinic.fullName}</span>, we
-            combine the latest dental technology with a warm, family-friendly
-            environment. Whether it&apos;s your child&apos;s first visit or a
-            complex implant procedure, you can expect honest advice, transparent
-            pricing and gentle hands.
+            {t("about.subParagraph", { clinic: clinic.fullName })}
           </p>
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">

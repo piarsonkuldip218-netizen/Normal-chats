@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import { clinic, clinicPhoto } from "@/lib/data";
 import { asset } from "@/lib/path";
+import { useT } from "@/lib/i18n";
 
 export default function Visit() {
+  const { t } = useT();
   // Direct link that opens Google Maps with the clinic location selected.
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     clinic.address.mapsQuery
@@ -33,14 +35,13 @@ export default function Visit() {
           className="mx-auto max-w-2xl text-center"
         >
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-            Visit Our Clinic
+            {t("visit.eyebrow")}
           </span>
           <h2 className="section-title mt-4">
-            You&apos;ll Find Us in the Heart of Rangapara
+            {t("visit.title")}
           </h2>
           <p className="mt-4 text-slate-600">
-            Located on the ground floor of Naman Bhawan, opposite Joydev Cinema
-            Hall — easy to spot, comfortable to walk into.
+            {t("visit.subhead")}
           </p>
         </motion.div>
 

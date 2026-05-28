@@ -6,8 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Maximize2, Camera } from "lucide-react";
 import { galleryPhotos } from "@/lib/data";
 import { asset } from "@/lib/path";
+import { useT } from "@/lib/i18n";
 
 export default function Gallery() {
+  const { t } = useT();
   const hasPhotos = galleryPhotos.length > 0;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -50,12 +52,11 @@ export default function Gallery() {
           className="mx-auto max-w-2xl text-center"
         >
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-            Gallery
+            {t("gallery.eyebrow")}
           </span>
-          <h2 className="section-title mt-4">A Look Inside TAMS Dental</h2>
+          <h2 className="section-title mt-4">{t("gallery.title")}</h2>
           <p className="mt-4 text-slate-600">
-            Take a peek at our modern clinic, advanced equipment and the
-            comfortable environment we&apos;ve built for our patients.
+            {t("gallery.subhead")}
           </p>
         </motion.div>
 

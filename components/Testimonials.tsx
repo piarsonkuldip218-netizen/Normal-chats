@@ -12,6 +12,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { testimonials, clinic, type Testimonial } from "@/lib/data";
+import { useT } from "@/lib/i18n";
 
 // A small palette so each patient avatar gets a stable, brand-leaning
 // background colour based on the first character of their name.
@@ -116,6 +117,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 }
 
 export default function Testimonials() {
+  const { t, locale } = useT();
   const [showAll, setShowAll] = useState(false);
 
   // Lead with 3 punchy reviews; rest are revealed on click. We pre-pick
@@ -150,16 +152,19 @@ export default function Testimonials() {
         >
           <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
             <Heart size={14} className="fill-rose-500 text-rose-500" />
-            Patient Stories
+            {t("reviews.eyebrow")}
           </span>
           <h2 className="section-title mt-4">
-            Trusted by Families Across Sonitpur
+            {t("reviews.title")}
           </h2>
           <p className="mt-4 text-slate-600">
-            Real, verified reviews from {clinic.rating.reviews}+ patients on
-            Google. Every word below is exactly what they wrote — nothing
-            edited, nothing added.
+            {t("reviews.subhead", { reviews: clinic.rating.reviews })}
           </p>
+          {locale !== "en" && (
+            <p className="mt-2 text-xs italic text-slate-500">
+              {t("reviews.originalLangNote")}
+            </p>
+          )}
         </motion.div>
 
         {/* Stats strip */}
@@ -185,7 +190,7 @@ export default function Testimonials() {
               />
             </div>
             <div className="mt-1 text-xs font-medium text-slate-500">
-              Average Google rating
+              {t("reviews.statAvg")}
             </div>
           </div>
           <div className="water-glass rounded-2xl p-4 text-center sm:p-5">
@@ -193,7 +198,7 @@ export default function Testimonials() {
               {fiveStarCount}
             </div>
             <div className="mt-1 text-xs font-medium text-slate-500">
-              5-star reviews
+              {t("reviews.stat5Star")}
             </div>
           </div>
           <div className="water-glass rounded-2xl p-4 text-center sm:p-5">
@@ -201,7 +206,7 @@ export default function Testimonials() {
               {clinic.rating.reviews}+
             </div>
             <div className="mt-1 text-xs font-medium text-slate-500">
-              Verified reviews
+              {t("reviews.statVerified")}
             </div>
           </div>
         </motion.div>
@@ -225,11 +230,11 @@ export default function Testimonials() {
             >
               {showAll ? (
                 <>
-                  Show fewer reviews <ChevronUp size={16} />
+                  {t("reviews.showFewer")} <ChevronUp size={16} />
                 </>
               ) : (
                 <>
-                  Show more reviews <ChevronDown size={16} />
+                  {t("reviews.showMore")} <ChevronDown size={16} />
                 </>
               )}
             </button>
@@ -240,7 +245,7 @@ export default function Testimonials() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition hover:gap-2"
             >
-              <Users size={14} /> Read all reviews on Google →
+              <Users size={14} /> {t("reviews.readOnGoogle")} →
             </a>
           </div>
         )}

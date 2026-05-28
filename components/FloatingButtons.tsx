@@ -3,8 +3,10 @@
 import { Phone, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { clinic } from "@/lib/data";
+import { useT } from "@/lib/i18n";
 
 export default function FloatingButtons() {
+  const { t } = useT();
   const wa = `https://wa.me/${clinic.contact.whatsapp}?text=Hello%20TAMS%20Dental%2C%20I%20want%20to%20book%20an%20appointment.`;
 
   return (
@@ -25,7 +27,7 @@ export default function FloatingButtons() {
         <span className="floating-pulse pointer-events-none absolute inset-0 -z-10 rounded-full bg-[#25D366] opacity-60 blur-md animate-ping" />
         <MessageCircle size={26} strokeWidth={2.2} />
         <span className="pointer-events-none absolute right-[110%] whitespace-nowrap rounded-full bg-slate-900 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition group-hover:opacity-100">
-          Chat on WhatsApp
+          {t("float.chatWhatsapp")}
         </span>
       </motion.a>
 
@@ -46,7 +48,7 @@ export default function FloatingButtons() {
         <span className="floating-pulse pointer-events-none absolute inset-0 -z-10 rounded-full bg-brand-500 opacity-50 blur-md animate-ping [animation-delay:200ms]" />
         <Phone size={24} strokeWidth={2.2} />
         <span className="pointer-events-none absolute right-[110%] whitespace-nowrap rounded-full bg-slate-900 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition group-hover:opacity-100">
-          Call {clinic.contact.phoneDisplay}
+          {t("float.callClinic", { phone: clinic.contact.phoneDisplay })}
         </span>
       </motion.a>
     </div>

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Star, Clock, MapPin } from "lucide-react";
 import { clinic } from "@/lib/data";
+import { useT } from "@/lib/i18n";
 
 const ToothModel = dynamic(() => import("./ToothModel"), {
   ssr: false,
@@ -22,6 +23,7 @@ const fadeUp = {
 };
 
 export default function Hero() {
+  const { t } = useT();
   return (
     <section
       id="home"
@@ -43,7 +45,12 @@ export default function Hero() {
             className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm font-medium text-brand-700"
           >
             <Star size={14} className="fill-amber-400 text-amber-400" />
-            <span>{clinic.rating.score}/5 from {clinic.rating.reviews}+ Google Reviews</span>
+            <span>
+              {t("hero.reviewsBadge", {
+                score: clinic.rating.score,
+                reviews: clinic.rating.reviews,
+              })}
+            </span>
           </motion.div>
 
           <motion.h1
@@ -53,8 +60,10 @@ export default function Hero() {
             custom={1}
             className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 md:text-6xl"
           >
-            Your <span className="gradient-text">Healthy Smile</span><br />
-            Starts at TAMS Dental
+            {t("hero.headlinePart1")}{" "}
+            <span className="gradient-text">{t("hero.headlineEmphasis")}</span>
+            <br />
+            {t("hero.headlinePart2")}
           </motion.h1>
 
           <motion.p
@@ -64,11 +73,9 @@ export default function Hero() {
             custom={2}
             className="mt-5 max-w-xl text-base text-slate-600 md:text-lg"
           >
-            Modern, painless and affordable dental care in Rangapara, Sonitpur — led by{" "}
-            <span className="font-semibold text-slate-800">
-              Dr. Tabarak Hussain (B.D.S)
-            </span>
-            . From routine checkups to advanced implants, we bring expert care to your family.
+            {t("hero.subhead", {
+              doctor: `${clinic.doctor.name} (${clinic.doctor.qualification})`,
+            })}
           </motion.p>
 
           <motion.div
@@ -79,7 +86,7 @@ export default function Hero() {
             className="mt-7 flex flex-wrap gap-3"
           >
             <a href={`tel:${clinic.contact.phone}`} className="btn-primary">
-              <Phone size={18} /> Book Appointment
+              <Phone size={18} /> {t("hero.bookAppointment")}
             </a>
             <a
               href={`https://wa.me/${clinic.contact.whatsapp}?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20TAMS%20Dental.`}
@@ -87,7 +94,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="btn-ghost"
             >
-              <MessageCircle size={18} /> WhatsApp Us
+              <MessageCircle size={18} /> {t("hero.whatsappUs")}
             </a>
           </motion.div>
 
@@ -104,9 +111,9 @@ export default function Hero() {
                 <Clock size={18} />
               </div>
               <div>
-                <div className="text-xs text-slate-500">Open Daily</div>
+                <div className="text-xs text-slate-500">{t("hero.openDaily")}</div>
                 <div className="text-sm font-semibold text-slate-800">
-                  10 AM – 8 PM
+                  {t("hero.hoursValue")}
                 </div>
               </div>
             </div>
@@ -115,9 +122,9 @@ export default function Hero() {
                 <MapPin size={18} />
               </div>
               <div>
-                <div className="text-xs text-slate-500">Visit Us</div>
+                <div className="text-xs text-slate-500">{t("hero.visitUs")}</div>
                 <div className="text-sm font-semibold text-slate-800">
-                  Rangapara, Sonitpur
+                  {t("hero.locationValue")}
                 </div>
               </div>
             </div>
@@ -126,9 +133,9 @@ export default function Hero() {
                 <Star size={18} />
               </div>
               <div>
-                <div className="text-xs text-slate-500">Rated</div>
+                <div className="text-xs text-slate-500">{t("hero.rated")}</div>
                 <div className="text-sm font-semibold text-slate-800">
-                  4.8★ on Google
+                  {t("hero.ratedValue")}
                 </div>
               </div>
             </div>
@@ -156,10 +163,10 @@ export default function Hero() {
           >
             <div className="flex items-center gap-2">
               <div className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <div className="font-semibold text-slate-800">Painless Care</div>
+              <div className="font-semibold text-slate-800">{t("hero.painlessCare")}</div>
             </div>
             <div className="mt-1 text-xs text-slate-500">
-              Latest anaesthesia
+              {t("hero.latestAnaesthesia")}
             </div>
           </motion.div>
 
@@ -170,10 +177,10 @@ export default function Hero() {
           >
             <div className="flex items-center gap-2">
               <Star size={14} className="fill-amber-400 text-amber-400" />
-              <div className="font-semibold text-slate-800">68+ Reviews</div>
+              <div className="font-semibold text-slate-800">{t("hero.reviewsCount")}</div>
             </div>
             <div className="mt-1 text-xs text-slate-500">
-              Trusted by Sonitpur
+              {t("hero.trustedBy")}
             </div>
           </motion.div>
         </motion.div>

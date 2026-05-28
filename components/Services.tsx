@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { services, clinic } from "@/lib/data";
 import { asset } from "@/lib/path";
+import { useT } from "@/lib/i18n";
 
 const iconMap: Record<string, LucideIcon> = {
   Stethoscope,
@@ -35,6 +36,7 @@ const iconMap: Record<string, LucideIcon> = {
 type Service = (typeof services)[number] & { image?: string };
 
 export default function Services() {
+  const { t } = useT();
   return (
     <section id="services" className="relative py-20 md:py-28">
       <div className="blob top-20 right-[-100px] h-80 w-80 bg-accent-400" />
@@ -49,15 +51,13 @@ export default function Services() {
           className="mx-auto max-w-2xl text-center"
         >
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-            Our Services
+            {t("services.eyebrow")}
           </span>
           <h2 className="section-title mt-4">
-            Complete Dental Care Under One Roof
+            {t("services.title")}
           </h2>
           <p className="mt-4 text-slate-600">
-            From routine cleanings to advanced cosmetic procedures — we offer the
-            full spectrum of modern dentistry with the latest equipment and
-            techniques.
+            {t("services.subhead")}
           </p>
         </motion.div>
 

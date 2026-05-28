@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle, Send, Clock } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { clinic } from "@/lib/data";
+import { useT } from "@/lib/i18n";
 
 export default function Contact() {
+  const { t } = useT();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -43,12 +45,11 @@ export default function Contact() {
           className="mx-auto max-w-2xl text-center"
         >
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-            Contact &amp; Appointment
+            {t("contact.eyebrow")}
           </span>
-          <h2 className="section-title mt-4">Book Your Visit Today</h2>
+          <h2 className="section-title mt-4">{t("contact.title")}</h2>
           <p className="mt-4 text-slate-600">
-            Walk in, call, or send us a quick WhatsApp message — we&apos;re happy
-            to answer your questions and schedule a convenient time.
+            {t("contact.subhead")}
           </p>
         </motion.div>
 

@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { features } from "@/lib/data";
+import { useT } from "@/lib/i18n";
 
 const iconMap: Record<string, LucideIcon> = {
   Star,
@@ -22,6 +23,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function WhyUs() {
+  const { t } = useT();
   return (
     <section
       id="why-us"
@@ -48,15 +50,14 @@ export default function WhyUs() {
           className="mx-auto max-w-2xl text-center text-white"
         >
           <span className="inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur">
-            Why Choose Us
+            {t("why.eyebrow")}
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
-            Trusted by Families Across <br className="hidden sm:block" />
-            Rangapara &amp; Sonitpur
+            {t("why.titleLine1")} <br className="hidden sm:block" />
+            {t("why.titleLine2")}
           </h2>
           <p className="mt-4 text-white/85">
-            We focus on three things: comfort, clinical excellence and clear
-            communication. Here&apos;s what makes patients keep coming back.
+            {t("why.subhead")}
           </p>
         </motion.div>
 

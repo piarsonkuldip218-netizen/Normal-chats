@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { aiTechnology, clinic, type TechEquipment } from "@/lib/data";
 import { asset } from "@/lib/path";
+import { useT } from "@/lib/i18n";
 
 const iconMap: Record<string, LucideIcon> = {
   Brain,
@@ -41,6 +42,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function Technology() {
+  const { t } = useT();
   const hasContent = aiTechnology.length > 0;
   const [active, setActive] = useState<TechEquipment | null>(null);
 
@@ -73,15 +75,13 @@ export default function Technology() {
         >
           <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
             <Cog size={14} className="animate-spin-slow" />
-            Advanced Technology
+            {t("tech.eyebrow")}
           </span>
           <h2 className="section-title mt-4">
-            Modern Equipment for Better Care
+            {t("tech.title")}
           </h2>
           <p className="mt-4 text-slate-600">
-            Every machine you see here is what makes our treatments faster,
-            safer and more comfortable than a typical clinic. Tap any card to
-            learn how it benefits you.
+            {t("tech.subhead")}
           </p>
         </motion.div>
 
