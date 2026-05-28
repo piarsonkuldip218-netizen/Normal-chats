@@ -6,8 +6,6 @@ import { motion } from "framer-motion";
 import {
   ArrowLeft,
   CheckCircle2,
-  MessageCircle,
-  Phone,
   ScanLine,
   Camera,
   Radio,
@@ -22,7 +20,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
-import { aiTechnology, clinic } from "@/lib/data";
+import { aiTechnology } from "@/lib/data";
 import { asset } from "@/lib/path";
 import { useT } from "@/lib/i18n";
 import { useTech } from "@/lib/i18n-content";
@@ -44,16 +42,11 @@ export default function EquipmentDetail({ slug }: { slug: string }) {
   const copy = useTech(slug);
 
   if (!eq) {
-    // Should never happen because dynamicParams=false, but keep a graceful fallback.
+    // Should never happen because dynamicParams=false on the parent route.
     return null;
   }
 
   const Icon = iconMap[eq.icon] ?? Sparkles;
-
-  // WhatsApp pre-filled message uses the localized title for context.
-  const wa = `https://wa.me/${clinic.contact.whatsapp}?text=${encodeURIComponent(
-    `Hello TAMS Dental, I'd like to know more about your ${copy.title} and book an appointment.`
-  )}`;
 
   return (
     <>
@@ -109,7 +102,8 @@ export default function EquipmentDetail({ slug }: { slug: string }) {
               </div>
             </div>
 
-            {/* Title + short description card */}
+            {/* Title + short description (CTA buttons intentionally removed —
+                this page is informational, not promotional). */}
             <div>
               <div className="flex items-start gap-3">
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
@@ -125,29 +119,11 @@ export default function EquipmentDetail({ slug }: { slug: string }) {
               <p className="mt-5 text-base leading-relaxed text-slate-700 md:text-lg">
                 {copy.description}
               </p>
-
-              {/* Inline CTAs (hero-card primary actions) */}
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a
-                  href={wa}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary justify-center sm:justify-start"
-                >
-                  <MessageCircle size={18} /> {t("tech.bookOnWhatsapp")}
-                </a>
-                <a
-                  href={`tel:${clinic.contact.phone}`}
-                  className="btn-ghost justify-center sm:justify-start"
-                >
-                  <Phone size={18} />
-                  {t("tech.callButton", { phone: clinic.contact.phoneDisplay })}
-                </a>
-              </div>
             </div>
           </motion.div>
 
-          {/* Long description */}
+          {/* Long description — explains how the equipment works and where
+              it fits in our clinical workflow. */}
           <motion.section
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,7 +136,9 @@ export default function EquipmentDetail({ slug }: { slug: string }) {
             </p>
           </motion.section>
 
-          {/* Benefits list */}
+          {/* What it's used for — clinical use-cases / problems addressed.
+              Replaces the older "How it benefits you" framing which was
+              promotional in tone. */}
           {copy.benefits.length > 0 && (
             <motion.section
               initial={{ opacity: 0, y: 24 }}
@@ -170,7 +148,7 @@ export default function EquipmentDetail({ slug }: { slug: string }) {
               className="mt-8 md:mt-10"
             >
               <h2 className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-                {t("tech.howItBenefits")}
+                {t("tech.usedFor")}
               </h2>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {copy.benefits.map((b) => (
@@ -191,38 +169,9 @@ export default function EquipmentDetail({ slug }: { slug: string }) {
             </motion.section>
           )}
 
-          {/* Bottom CTA panel — duplicates top CTAs after a long read */}
-          <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, delay: 0.15 }}
-            className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 via-brand-600 to-accent-600 p-8 text-white shadow-glow md:mt-12 md:p-10"
-          >
-            <h2 className="font-display text-2xl font-bold md:text-3xl">
-              {copy.title}
-            </h2>
-            <p className="mt-2 text-white/85">{t("contact.subhead")}</p>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={wa}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-brand-700 shadow-soft transition hover:-translate-y-0.5"
-              >
-                <MessageCircle size={18} /> {t("tech.bookOnWhatsapp")}
-              </a>
-              <a
-                href={`tel:${clinic.contact.phone}`}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/15 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/25"
-              >
-                <Phone size={18} />
-                {t("tech.callButton", { phone: clinic.contact.phoneDisplay })}
-              </a>
-            </div>
-          </motion.section>
-
-          {/* Other equipment quick links — lets visitors hop between detail pages */}
+          {/* Other equipment chips — gives the visitor an easy way to
+              browse the rest of our equipment without going back to the
+              home page. */}
           <section className="mt-12">
             <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
               {t("tech.eyebrow")}

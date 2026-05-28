@@ -188,6 +188,7 @@ const dict = {
     // Technology section + modal
     "tech.learnMore": "Learn more",
     "tech.howItBenefits": "How it benefits you",
+    "tech.usedFor": "What it's used for",
     "tech.bookOnWhatsapp": "Book on WhatsApp",
     "tech.callButton": "Call {phone}",
 
@@ -337,6 +338,7 @@ const dict = {
 
     "tech.learnMore": "और जानें",
     "tech.howItBenefits": "यह आपको कैसे लाभ देता है",
+    "tech.usedFor": "किन कामों में उपयोग होता है",
     "tech.bookOnWhatsapp": "WhatsApp पर बुक करें",
     "tech.callButton": "कॉल करें {phone}",
 
@@ -483,6 +485,7 @@ const dict = {
 
     "tech.learnMore": "অধিক জানক",
     "tech.howItBenefits": "ই আপোনাক কেনেদৰে সহায় কৰে",
+    "tech.usedFor": "কি কি কামত ব্যৱহাৰ হয়",
     "tech.bookOnWhatsapp": "হোৱাটছএপত বুক কৰক",
     "tech.callButton": "ফোন কৰক {phone}",
 

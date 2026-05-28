@@ -189,14 +189,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "3D",
     image: "/tech/intraoral-scanner.jpg",
     description:
-      "Builds a high-precision 3D map of your teeth in minutes — no more uncomfortable putty impressions or messy moulds.",
+      "A small handheld wand that creates a digital 3D model of your teeth in minutes.",
     longDescription:
-      "Our intraoral scanner uses a small wand with structured-light cameras to capture a digital 3D model of your full arch in under five minutes. The scan is exact to a fraction of a millimetre, so any crown, bridge, aligner or surgical guide we order from the lab fits perfectly the first time. You can preview the scan on screen with us, see exactly what your bite looks like, and even watch simulations of how your future smile will turn out.",
+      "An intraoral scanner uses structured-light cameras inside a pen-sized wand to capture a precise digital 3D model of the full upper and lower arch. The scan is exact to a fraction of a millimetre and replaces the older method of taking putty impressions. The 3D model can be viewed on the chairside screen and shared digitally with the dental lab.",
     benefits: [
-      "No goopy impression material — totally comfortable",
-      "Accurate to 0.01 mm for perfect-fit restorations",
-      "Real-time on-screen visualisation, you see what we see",
-      "Faster turnaround on lab work — fewer chair visits",
+      "Designing crowns, bridges and dentures",
+      "Planning clear aligner treatment",
+      "Creating surgical guides for implant placement",
+      "Tracking changes in tooth alignment over time",
     ],
   },
   {
@@ -206,14 +206,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "HD",
     image: "/tech/intraoral-camera.jpg",
     description:
-      "A pen-sized HD camera that lets you see exactly what we see — every cavity, crack and detail magnified on screen.",
+      "A pen-sized HD camera that captures detailed images inside the mouth.",
     longDescription:
-      "The intraoral camera is a small, sterilised wand the size of a pen that captures crystal-clear high-definition images of every tooth surface, including the hard-to-see back ones. Photos are displayed on a chairside monitor in real time and saved to your file, so we can document treatment progress and you always understand the diagnosis we're giving you.",
+      "The intraoral camera is a small sterilised wand with a high-definition camera at its tip. It captures clear images of every tooth surface — including the hard-to-see back ones — and displays them on a chairside monitor. Images are saved to the patient record so tooth condition can be tracked over time.",
     benefits: [
-      "Crystal-clear HD images of every tooth surface",
-      "You see and understand the diagnosis with us",
-      "Photos saved to your file for progress tracking",
-      "Helps catch problems early before they grow",
+      "Documenting tooth condition for the patient record",
+      "Tracking changes between visits",
+      "Spotting cracks, decay or wear early",
+      "Showing the patient what the dentist sees",
     ],
   },
   {
@@ -223,14 +223,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "Panoramic",
     image: "/tech/opg-xray.jpg",
     description:
-      "A single panoramic image of all your teeth, jaw bones and sinuses — essential for implants, wisdom tooth and bite planning.",
+      "A panoramic X-ray that shows the entire upper and lower jaw in a single image.",
     longDescription:
-      "OPG (Orthopantomogram) is a wide rotating X-ray that captures your entire upper and lower jaw — including all teeth, the temporomandibular joints, and surrounding bone — in one panoramic image. It's the gold standard for planning implants, evaluating impacted wisdom teeth, detecting jaw pathology, and orthodontic treatment planning. The whole scan takes under a minute and uses far less radiation than older techniques.",
+      "OPG (Orthopantomogram) is a wide rotating X-ray that captures the full upper and lower jaw — including all teeth, the temporomandibular joints, and surrounding bone — in one panoramic image. The whole scan takes under a minute and uses far less radiation than older film techniques.",
     benefits: [
-      "Full-mouth, full-jaw view in one image",
-      "Essential for implant and wisdom-tooth planning",
-      "Low-radiation digital sensor, instant results",
-      "Detects bone loss, cysts and infections you can't see",
+      "Planning dental implants",
+      "Evaluating impacted wisdom teeth",
+      "Detecting jaw cysts, infections or bone loss",
+      "Orthodontic treatment planning",
     ],
   },
   {
@@ -240,14 +240,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "Low-dose",
     image: "/tech/rvg-xray.jpg",
     description:
-      "Targeted digital X-ray for individual teeth — up to 90% less radiation than traditional film, with results on-screen instantly.",
+      "A small digital sensor that captures sharp X-rays of one or two teeth at a time.",
     longDescription:
-      "Radio-Visiography (RVG) is a small intraoral digital sensor that captures sharp X-ray images of one or two teeth at a time. Unlike old film X-rays, results appear on the chairside monitor in seconds and use up to 90% less radiation. We use it during root canals to confirm the canal is fully cleaned, to spot hidden cavities between teeth, and to verify the fit of crowns and fillings.",
+      "RVG (Radio-Visiography) is a compact digital intraoral sensor that produces a sharp X-ray of one or two teeth at a time. Results appear on the chairside monitor in seconds and the digital image can be zoomed and annotated. RVG uses up to 90% less radiation than traditional film X-rays.",
     benefits: [
-      "Up to 90% less radiation than traditional X-ray film",
-      "Results on screen in seconds — no waiting",
-      "Sharp digital images, easy to zoom and annotate",
-      "Critical for accurate root canal and cavity diagnosis",
+      "Diagnosing cavities between teeth",
+      "Checking root canal treatment progress",
+      "Verifying the fit of fillings and crowns",
+      "Examining tooth roots before extraction",
     ],
   },
   {
@@ -257,14 +257,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "Latest",
     image: "/tech/piezo-surgery.jpg",
     description:
-      "Ultrasonic vibration cuts bone with surgical precision while protecting soft tissue — the latest standard for intraoral surgery.",
+      "An ultrasonic device that cuts bone with surgical precision while leaving soft tissue untouched.",
     longDescription:
-      "Piezo surgery uses high-frequency ultrasonic vibration instead of a traditional rotary drill to cut bone with extreme precision. Because it only acts on hard tissue, the surrounding gums, nerves and blood vessels stay completely safe. We use it for advanced procedures like sinus lifts before implants, complex extractions, gum surgery and bone grafting — with less bleeding, less swelling and a noticeably faster recovery for you.",
+      "Piezo surgery uses high-frequency ultrasonic vibration instead of a traditional rotary drill to cut bone. Because it acts only on hard tissue, the surrounding gums, nerves and blood vessels remain unaffected. This technology has become the standard for advanced intraoral surgery.",
     benefits: [
-      "Cuts bone with surgical precision, soft tissue stays safe",
-      "Far less bleeding and post-op swelling",
-      "Faster healing and recovery time",
-      "Used for sinus lifts, complex extractions and bone grafts",
+      "Sinus lift procedures before implants",
+      "Complex tooth extractions",
+      "Bone grafting",
+      "Surgery near sensitive nerves and vessels",
     ],
   },
   {
@@ -274,14 +274,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "Bloodless",
     image: "/tech/electric-cautery.jpg",
     description:
-      "Performs bloodless surgery of oral lesions, gum reshaping and minor soft-tissue procedures with minimal pain.",
+      "A device that cuts and seals soft tissue at the same time using controlled heat.",
     longDescription:
-      "Electric cautery uses controlled heat to cut and seal soft tissue at the same time. We use it to remove benign oral lesions, reshape gum lines for cosmetic procedures, and perform minor surgery — all with virtually no bleeding because vessels are sealed as the cut is made. This means a much cleaner field, faster healing, and far less discomfort than a scalpel-based procedure.",
+      "Electric cautery uses controlled heat to incise and simultaneously seal soft tissue. Because vessels are sealed as the cut is made, surgical procedures are bloodless, leaving a clean field for the dentist.",
     benefits: [
-      "Bloodless surgery — vessels sealed instantly",
-      "Minimal post-op swelling and discomfort",
-      "Ideal for benign lesion removal and gum contouring",
-      "Faster, cleaner healing of soft tissue",
+      "Removing benign oral lesions",
+      "Reshaping gum lines for cosmetic procedures",
+      "Frenectomy (correcting tongue or lip ties)",
+      "Treating overgrown gum tissue",
     ],
   },
   {
@@ -291,14 +291,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "Sterile",
     image: "/tech/uv-chamber.jpg",
     description:
-      "Stores fully sterilized instruments under continuous UV light to keep them sterile and ready until the moment of use.",
+      "A storage cabinet that uses ultraviolet light to keep already-sterilised instruments sterile until use.",
     longDescription:
-      "After our autoclave-sterilized instruments come out of pouches, they're stored in a UV-C sterilization chamber. The continuous ultraviolet light prevents any airborne contamination, so every instrument that enters your mouth is sterile right up to the moment it's used. This is a hospital-grade infection-control standard that goes well beyond what most clinics offer.",
+      "After instruments come out of the autoclave, they are stored in a UV-C sterilization chamber. The continuous ultraviolet-C light prevents any airborne contamination during storage, so every instrument that enters the patient's mouth has been kept in a sterile state right up to the moment of use.",
     benefits: [
-      "Continuous UV-C light keeps instruments sterile until use",
-      "Prevents recontamination during storage",
-      "Hospital-grade infection control, well beyond the norm",
-      "Patient safety verified before every procedure",
+      "Storing all sterile dental instruments",
+      "Preventing recontamination between cycles",
+      "Maintaining hospital-grade sterility",
+      "Keeping moisture-sensitive items dry and sterile",
     ],
   },
   {
@@ -308,14 +308,14 @@ export const aiTechnology: TechEquipment[] = [
     badge: "Class B",
     image: "/tech/sterilizer.jpg",
     description:
-      "The highest grade of clinical sterilization — kills all viruses, bacteria and spores on every instrument before it's used on you.",
+      "The highest medical-grade sterilizer that destroys all viruses, bacteria and spores on dental instruments.",
     longDescription:
-      "A Class B autoclave is the gold standard for medical and dental sterilization, using high-pressure saturated steam to destroy 100% of viruses, bacteria, fungi and even bacterial spores on every instrument. Each cycle is monitored and logged. Combined with our UV chamber, this means every instrument that touches your mouth meets the same sterilization standard as a hospital operation theatre.",
+      "A Class B autoclave is the gold standard for medical and dental sterilization. It uses high-pressure saturated steam to destroy 100% of viruses, bacteria, fungi and even bacterial spores on every instrument. Each sterilization cycle is monitored and logged.",
     benefits: [
-      "Highest grade (Class B) of dental sterilization",
-      "Kills all viruses, bacteria, fungi and spores",
-      "Validated cycles — every batch monitored and logged",
-      "Hospital operation-theatre level of patient safety",
+      "Sterilising all reusable dental instruments",
+      "Sterilising hollow and porous tools (handpieces, etc.)",
+      "Maintaining infection control standards",
+      "Compliance with hospital-grade dental safety",
     ],
   },
 ];
