@@ -118,10 +118,10 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 export default function Testimonials() {
   const [showAll, setShowAll] = useState(false);
 
-  // Lead with 9 punchy reviews; rest are revealed on click. We pre-pick
+  // Lead with 3 punchy reviews; rest are revealed on click. We pre-pick
   // a balanced lead (Local Guides, 5★s, varied treatments) so the
   // initial impression is strong even without expanding.
-  const initialCount = 9;
+  const initialCount = 3;
   const visible = useMemo(
     () => (showAll ? testimonials : testimonials.slice(0, initialCount)),
     [showAll]
@@ -240,7 +240,7 @@ export default function Testimonials() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition hover:gap-2"
             >
-              <Users size={14} /> Read all reviews on Google →
+              <Users size={14} /> Check all reviews on Google →
             </a>
           </div>
         )}
