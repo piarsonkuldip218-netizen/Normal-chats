@@ -127,13 +127,12 @@ export default function Testimonials() {
     [showAll]
   );
 
-  // Light stats summary — calculated from the actual array so it
-  // stays accurate even if the clinic adds more.
-  const totalReviews = testimonials.length;
-  const fiveStarCount = testimonials.filter((t) => t.rating === 5).length;
-  const avgRating = (
-    testimonials.reduce((s, t) => s + t.rating, 0) / totalReviews
-  ).toFixed(1);
+  // Light stats summary — values reflect the *real* Google Business
+  // Profile counts (61 of 68 are 5★, avg 4.8). We don't compute from the
+  // testimonials array because we only embed a curated subset of reviews.
+  const totalReviews = clinic.rating.reviews; // 68 (Google total)
+  const fiveStarCount = 61; // Real 5★ count on Google
+  const avgRating = clinic.rating.score.toFixed(1); // 4.8
 
   return (
     <section id="reviews" className="relative py-20 md:py-28">
@@ -230,7 +229,7 @@ export default function Testimonials() {
                 </>
               ) : (
                 <>
-                  Show all {totalReviews} reviews <ChevronDown size={16} />
+                  Show all {testimonials.length} reviews <ChevronDown size={16} />
                 </>
               )}
             </button>
