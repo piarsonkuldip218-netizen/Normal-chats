@@ -165,10 +165,12 @@ function TechCard({
   onSelect: () => void;
 }) {
   const copy = useTech(eq.slug);
+  // Plain <button> wrapper (not motion.button) so the click handler is
+  // attached to a native HTML element with zero framer-motion event
+  // wrapping. The animation lives on a child motion.div instead. This
+  // pattern is the most reliable for mobile touch + a11y.
   return (
-    <motion.button
-      type="button"
-      onClick={onSelect}
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -177,45 +179,53 @@ function TechCard({
         delay: (i % 4) * 0.06,
         ease: [0.2, 0.8, 0.2, 1],
       }}
-      aria-label={`${learnMoreLabel}: ${copy.title}`}
-      className="glass-card group relative flex flex-col overflow-hidden text-left"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60">
-        {eq.image ? (
-          <Image
-            src={asset(eq.image)}
-            alt={copy.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
-          />
-        ) : (
-          <div className="grid h-full w-full place-items-center bg-gradient-to-br from-slate-900 via-brand-700 to-accent-600">
-            <Icon size={48} className="text-white/85" strokeWidth={1.5} />
-          </div>
-        )}
-        {eq.badge && (
-          <div className="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-700 shadow-soft">
-            {eq.badge}
-          </div>
-        )}
-      </div>
-
-      <div className="flex flex-1 flex-col p-5">
-        <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
-          <Icon size={20} strokeWidth={2.2} />
+      <button
+        type="button"
+        onClick={onSelect}
+        aria-label={`${learnMoreLabel}: ${copy.title}`}
+        className="glass-card group relative flex h-full w-full cursor-pointer flex-col overflow-hidden text-left transition active:scale-[0.99]"
+        style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
+      >
+        {/* Image area — pointer-events-none so the image can never
+            "catch" a tap on iOS Safari before the button does. */}
+        <div className="pointer-events-none relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60">
+          {eq.image ? (
+            <Image
+              src={asset(eq.image)}
+              alt={copy.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          ) : (
+            <div className="grid h-full w-full place-items-center bg-gradient-to-br from-slate-900 via-brand-700 to-accent-600">
+              <Icon size={48} className="text-white/85" strokeWidth={1.5} />
+            </div>
+          )}
+          {eq.badge && (
+            <div className="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-700 shadow-soft">
+              {eq.badge}
+            </div>
+          )}
         </div>
-        <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
-          {copy.title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          {copy.description}
-        </p>
-        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition group-hover:gap-2.5">
-          {learnMoreLabel} <ArrowRight size={14} />
-        </span>
-      </div>
-    </motion.button>
+
+        <div className="pointer-events-none flex flex-1 flex-col p-5">
+          <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
+            <Icon size={20} strokeWidth={2.2} />
+          </div>
+          <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
+            {copy.title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            {copy.description}
+          </p>
+          <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition group-hover:gap-2.5">
+            {learnMoreLabel} <ArrowRight size={14} />
+          </span>
+        </div>
+      </button>
+    </motion.div>
   );
 }
 
