@@ -4,7 +4,23 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle, Send, Clock } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { clinic } from "@/lib/data";
-import { useT } from "@/lib/i18n";
+import { useT, type TKey } from "@/lib/i18n";
+
+// Service dropdown options keyed by translation key. The form value
+// stays English (so the WhatsApp message we send is consistent and
+// readable to clinic staff regardless of the visitor's locale).
+const serviceOptions: Array<{ key: TKey; value: string }> = [
+  { key: "contact.serviceGeneral", value: "General Consultation" },
+  { key: "contact.serviceCleaning", value: "Cleaning & Polishing" },
+  { key: "contact.serviceRct", value: "Root Canal Treatment" },
+  { key: "contact.serviceExtraction", value: "Tooth Extraction" },
+  { key: "contact.serviceImplants", value: "Dental Implants" },
+  { key: "contact.serviceBraces", value: "Braces / Orthodontics" },
+  { key: "contact.serviceWhitening", value: "Teeth Whitening" },
+  { key: "contact.serviceCrowns", value: "Crowns & Bridges" },
+  { key: "contact.serviceKids", value: "Kids Dentistry" },
+  { key: "contact.serviceCosmetic", value: "Cosmetic Dentistry" },
+];
 
 export default function Contact() {
   const { t } = useT();
@@ -71,13 +87,13 @@ export default function Contact() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-slate-500">
-                  Call Us
+                  {t("contact.callUs")}
                 </div>
                 <div className="mt-1 font-semibold text-slate-900">
                   {clinic.contact.phoneDisplay}
                 </div>
                 <div className="mt-1 text-xs text-slate-500">
-                  Tap to dial directly
+                  {t("contact.tapToDial")}
                 </div>
               </div>
             </a>
@@ -93,13 +109,13 @@ export default function Contact() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-slate-500">
-                  WhatsApp
+                  {t("contact.whatsapp")}
                 </div>
                 <div className="mt-1 font-semibold text-slate-900">
-                  Chat with us instantly
+                  {t("contact.chatInstantly")}
                 </div>
                 <div className="mt-1 text-xs text-slate-500">
-                  Quick replies during clinic hours
+                  {t("contact.quickReplies")}
                 </div>
               </div>
             </a>
@@ -110,7 +126,7 @@ export default function Contact() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-slate-500">
-                  Address
+                  {t("contact.address")}
                 </div>
                 <div className="mt-1 text-sm font-medium text-slate-900 leading-relaxed">
                   {clinic.address.line1},<br />
@@ -128,13 +144,13 @@ export default function Contact() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-slate-500">
-                  Working Hours
+                  {t("contact.workingHours")}
                 </div>
                 <div className="mt-1 text-sm font-medium text-slate-900">
-                  Open all 7 days
+                  {t("visit.openAllDays")}
                 </div>
                 <div className="mt-1 text-xs text-slate-500">
-                  10:00 AM – 8:00 PM
+                  {t("visit.hoursValue")}
                 </div>
               </div>
             </div>
@@ -155,61 +171,54 @@ export default function Contact() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <Field
                   name="name"
-                  label="Your Name"
-                  placeholder="Full name"
+                  label={t("contact.formName")}
+                  placeholder={t("contact.formNamePlaceholder")}
                   required
                 />
                 <Field
                   name="phone"
-                  label="Phone Number"
-                  placeholder="+91 ..."
+                  label={t("contact.formPhone")}
+                  placeholder={t("contact.formPhonePlaceholder")}
                   type="tel"
                   required
                 />
                 <div className="sm:col-span-2">
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                    Service
+                    {t("contact.formService")}
                   </label>
                   <select
                     name="service"
                     defaultValue="General Consultation"
                     className="w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
                   >
-                    <option>General Consultation</option>
-                    <option>Cleaning &amp; Polishing</option>
-                    <option>Root Canal Treatment</option>
-                    <option>Tooth Extraction</option>
-                    <option>Dental Implants</option>
-                    <option>Braces / Orthodontics</option>
-                    <option>Teeth Whitening</option>
-                    <option>Crowns &amp; Bridges</option>
-                    <option>Kids Dentistry</option>
-                    <option>Cosmetic Dentistry</option>
+                    {serviceOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {t(opt.key)}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="sm:col-span-2">
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                    Message (optional)
+                    {t("contact.formMessage")}
                   </label>
                   <textarea
                     name="message"
                     rows={4}
-                    placeholder="Tell us briefly about your concern…"
+                    placeholder={t("contact.formMessagePlaceholder")}
                     className="w-full resize-none rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
                   />
                 </div>
               </div>
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-                <p className="text-xs text-slate-500">
-                  Submitting will open WhatsApp with your details pre-filled.
-                </p>
+                <p className="text-xs text-slate-500">{t("contact.formNote")}</p>
                 <button type="submit" className="btn-primary">
-                  <Send size={16} /> Send via WhatsApp
+                  <Send size={16} /> {t("contact.submit")}
                 </button>
               </div>
               {submitted && (
                 <div className="mt-4 rounded-xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
-                  ✓ Opening WhatsApp… we&apos;ll get back to you shortly.
+                  {t("contact.submitSuccess")}
                 </div>
               )}
             </form>

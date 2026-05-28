@@ -72,7 +72,7 @@ export default function Visit() {
                         <Building2 size={36} strokeWidth={1.5} />
                       </div>
                       <p className="mt-4 text-sm font-medium text-brand-700/80">
-                        Clinic photo coming soon
+                        {t("visit.photoSoon")}
                       </p>
                     </div>
                   </div>
@@ -90,7 +90,7 @@ export default function Visit() {
                 {clinic.rating.score}
               </span>
               <span className="text-xs text-slate-500">
-                / 5 · {clinic.rating.reviews}+ reviews
+                {t("visit.reviewsSuffix", { reviews: clinic.rating.reviews })}
               </span>
             </div>
 
@@ -118,7 +118,7 @@ export default function Visit() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Address
+                    {t("visit.address")}
                   </div>
                   <div className="mt-1 text-sm leading-relaxed text-slate-700">
                     {clinic.address.line1},<br />
@@ -136,13 +136,13 @@ export default function Visit() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Hours
+                    {t("visit.hours")}
                   </div>
                   <div className="mt-1 text-sm font-semibold text-slate-900">
-                    Open all 7 days
+                    {t("visit.openAllDays")}
                   </div>
                   <div className="text-xs text-slate-500">
-                    10:00 AM – 8:00 PM
+                    {t("visit.hoursValue")}
                   </div>
                 </div>
               </div>
@@ -155,13 +155,13 @@ export default function Visit() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                <Navigation size={18} /> Get Directions
+                <Navigation size={18} /> {t("visit.getDirections")}
               </a>
               <a
                 href={`tel:${clinic.contact.phone}`}
                 className="btn-ghost"
               >
-                <Phone size={18} /> Call Clinic
+                <Phone size={18} /> {t("visit.callClinic")}
               </a>
             </div>
           </motion.div>

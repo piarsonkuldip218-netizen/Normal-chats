@@ -141,6 +141,62 @@ const dict = {
     "contact.subhead":
       "Walk in, call, or send us a quick WhatsApp message — we're happy to answer your questions and schedule a convenient time.",
 
+    // Visit section labels
+    "visit.address": "Address",
+    "visit.hours": "Hours",
+    "visit.openAllDays": "Open all 7 days",
+    "visit.hoursValue": "10:00 AM – 8:00 PM",
+    "visit.getDirections": "Get Directions",
+    "visit.callClinic": "Call Clinic",
+    "visit.photoSoon": "Clinic photo coming soon",
+    "visit.reviewsSuffix": "/ 5 · {reviews}+ reviews",
+
+    // Contact section labels
+    "contact.callUs": "Call Us",
+    "contact.tapToDial": "Tap to dial directly",
+    "contact.whatsapp": "WhatsApp",
+    "contact.chatInstantly": "Chat with us instantly",
+    "contact.quickReplies": "Quick replies during clinic hours",
+    "contact.address": "Address",
+    "contact.workingHours": "Working Hours",
+    // Form
+    "contact.formName": "Your Name",
+    "contact.formNamePlaceholder": "Full name",
+    "contact.formPhone": "Phone Number",
+    "contact.formPhonePlaceholder": "+91 ...",
+    "contact.formService": "Service",
+    "contact.formMessage": "Message (optional)",
+    "contact.formMessagePlaceholder": "Tell us briefly about your concern…",
+    "contact.formNote": "Submitting will open WhatsApp with your details pre-filled.",
+    "contact.submit": "Send via WhatsApp",
+    "contact.submitSuccess": "✓ Opening WhatsApp… we'll get back to you shortly.",
+    // Service dropdown options
+    "contact.serviceGeneral": "General Consultation",
+    "contact.serviceCleaning": "Cleaning & Polishing",
+    "contact.serviceRct": "Root Canal Treatment",
+    "contact.serviceExtraction": "Tooth Extraction",
+    "contact.serviceImplants": "Dental Implants",
+    "contact.serviceBraces": "Braces / Orthodontics",
+    "contact.serviceWhitening": "Teeth Whitening",
+    "contact.serviceCrowns": "Crowns & Bridges",
+    "contact.serviceKids": "Kids Dentistry",
+    "contact.serviceCosmetic": "Cosmetic Dentistry",
+
+    // Services section
+    "services.askWhatsapp": "Ask on WhatsApp",
+
+    // Technology section + modal
+    "tech.learnMore": "Learn more",
+    "tech.howItBenefits": "How it benefits you",
+    "tech.bookOnWhatsapp": "Book on WhatsApp",
+    "tech.callButton": "Call {phone}",
+
+    // Gallery
+    "gallery.openPhoto": "Open photo",
+
+    // Doctor / About
+    "about.doctorTitle": "Founder & Chief Dental Surgeon",
+
     // Footer
     "footer.brandDesc":
       "Modern, painless and affordable dental care in Rangapara, Sonitpur — led by Dr. Tabarak Hussain (B.D.S).",
@@ -240,6 +296,54 @@ const dict = {
     "contact.subhead":
       "वॉक-इन करें, कॉल करें, या तुरंत WhatsApp मैसेज भेजें — हमें आपके सवालों के जवाब देने और सुविधाजनक समय तय करने में खुशी होगी।",
 
+    "visit.address": "पता",
+    "visit.hours": "समय",
+    "visit.openAllDays": "सातों दिन खुला",
+    "visit.hoursValue": "10:00 AM – 8:00 PM",
+    "visit.getDirections": "दिशा-निर्देश पाएँ",
+    "visit.callClinic": "क्लिनिक को कॉल करें",
+    "visit.photoSoon": "क्लिनिक की तस्वीर जल्द ही आएगी",
+    "visit.reviewsSuffix": "/ 5 · {reviews}+ समीक्षाएँ",
+
+    "contact.callUs": "हमें कॉल करें",
+    "contact.tapToDial": "सीधे डायल करने के लिए टैप करें",
+    "contact.whatsapp": "WhatsApp",
+    "contact.chatInstantly": "हमसे तुरंत चैट करें",
+    "contact.quickReplies": "क्लिनिक समय में त्वरित जवाब",
+    "contact.address": "पता",
+    "contact.workingHours": "कार्य समय",
+    "contact.formName": "आपका नाम",
+    "contact.formNamePlaceholder": "पूरा नाम",
+    "contact.formPhone": "फ़ोन नंबर",
+    "contact.formPhonePlaceholder": "+91 ...",
+    "contact.formService": "सेवा",
+    "contact.formMessage": "संदेश (वैकल्पिक)",
+    "contact.formMessagePlaceholder": "अपनी समस्या के बारे में संक्षेप में बताएँ…",
+    "contact.formNote": "सबमिट करने पर WhatsApp आपके विवरण के साथ खुल जाएगा।",
+    "contact.submit": "WhatsApp पर भेजें",
+    "contact.submitSuccess": "✓ WhatsApp खोला जा रहा है… हम जल्द ही आपसे संपर्क करेंगे।",
+    "contact.serviceGeneral": "सामान्य परामर्श",
+    "contact.serviceCleaning": "सफाई व पॉलिशिंग",
+    "contact.serviceRct": "रूट कैनाल उपचार",
+    "contact.serviceExtraction": "दाँत निकालना",
+    "contact.serviceImplants": "डेंटल इम्प्लांट",
+    "contact.serviceBraces": "ब्रेसेस / ऑर्थोडोंटिक्स",
+    "contact.serviceWhitening": "दाँत सफेद करना",
+    "contact.serviceCrowns": "क्राउन व ब्रिज",
+    "contact.serviceKids": "बच्चों की दंत चिकित्सा",
+    "contact.serviceCosmetic": "कॉस्मेटिक दंत चिकित्सा",
+
+    "services.askWhatsapp": "WhatsApp पर पूछें",
+
+    "tech.learnMore": "और जानें",
+    "tech.howItBenefits": "यह आपको कैसे लाभ देता है",
+    "tech.bookOnWhatsapp": "WhatsApp पर बुक करें",
+    "tech.callButton": "कॉल करें {phone}",
+
+    "gallery.openPhoto": "तस्वीर खोलें",
+
+    "about.doctorTitle": "संस्थापक व मुख्य दंत शल्य चिकित्सक",
+
     "footer.brandDesc":
       "रंगापारा, सोनितपुर में आधुनिक, दर्द-रहित और किफायती दंत चिकित्सा — डॉ. तबारक हुसैन (B.D.S) के नेतृत्व में।",
     "footer.quickLinks": "त्वरित लिंक",
@@ -261,14 +365,14 @@ const dict = {
     "nav.reviews": "পৰ্যালোচনা",
     "nav.visit": "ক্লিনিকলৈ আহক",
     "nav.contact": "যোগাযোগ",
-    "nav.callNow": "এতিয়াই কল কৰক",
+    "nav.callNow": "এতিয়াই ফোন কৰক",
 
     "hero.reviewsBadge": "{reviews}+ গুগল পৰ্যালোচনাৰ পৰা {score}/৫",
     "hero.headlinePart1": "আপোনাৰ",
     "hero.headlineEmphasis": "সুস্থ হাঁহি",
     "hero.headlinePart2": "TAMS Dental ৰ পৰা আৰম্ভ",
     "hero.subhead":
-      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিনা যন্ত্ৰণা আৰু সুলভ দাঁতৰ চিকিৎসা — {doctor}ৰ নেতৃত্বত। সাধাৰণ পৰীক্ষাৰ পৰা উন্নত ইম্প্ল্যাণ্টলৈকে, আমি আপোনাৰ পৰিয়াললৈ বিশেষজ্ঞ যত্ন আনিছোঁ।",
+      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিষহীন আৰু সুলভ দাঁতৰ চিকিৎসা — {doctor}ৰ নেতৃত্বত। সাধাৰণ পৰীক্ষাৰ পৰা উন্নত ইম্প্ল্যাণ্টলৈকে, আমি আপোনাৰ পৰিয়াললৈ বিশেষজ্ঞ যত্ন আনিছোঁ।",
     "hero.bookAppointment": "এপইণ্টমেণ্ট বুক কৰক",
     "hero.whatsappUs": "হোৱাটছএপত মেছেজ কৰক",
     "hero.openDaily": "দৈনিক খোলা",
@@ -277,34 +381,34 @@ const dict = {
     "hero.locationValue": "ৰঙাপাৰা, শোণিতপুৰ",
     "hero.rated": "ৰেটিং",
     "hero.ratedValue": "গুগলত ৪.৮★",
-    "hero.painlessCare": "বিনা যন্ত্ৰণা চিকিৎসা",
+    "hero.painlessCare": "বিষহীন চিকিৎসা",
     "hero.latestAnaesthesia": "আধুনিক এনেস্থেছিয়া",
     "hero.reviewsCount": "৬৮+ পৰ্যালোচনা",
     "hero.trustedBy": "শোণিতপুৰৰ ভৰসা",
 
     "float.chatWhatsapp": "হোৱাটছএপত চেট কৰক",
-    "float.callClinic": "কল কৰক {phone}",
+    "float.callClinic": "ফোন কৰক {phone}",
 
     "about.eyebrow": "আমাৰ বিষয়ে",
     "about.title": "সহানুভূতিশীল যত্ন, আধুনিক দন্তচিকিৎসা",
     "about.statHappyPatients": "সুখী ৰোগী",
     "about.statServices": "প্ৰদান কৰা সেৱা",
     "about.statRating": "গুগল ৰেটিং",
-    "about.statQualified": "যোগ্য ডেণ্টিষ্ট",
+    "about.statQualified": "যোগ্য দাঁতৰ চিকিৎসক",
     "about.subParagraph":
-      "{clinic}ত আমি আধুনিক দাঁতৰ প্ৰযুক্তিৰ সৈতে এক উষ্ণ, পৰিয়ালবন্ধু পৰিৱেশ একত্ৰিত কৰিছোঁ। আপোনাৰ সন্তানৰ প্ৰথম ভ্ৰমণ হওক বা জটিল ইম্প্ল্যাণ্ট প্ৰক্ৰিয়া, আপুনি সৎ পৰামৰ্শ, পৰিষ্কাৰ মূল্য আৰু কোমল হাত পাব।",
+      "{clinic}ত আমি আধুনিক দাঁতৰ প্ৰযুক্তিক এক উষ্ণ, পৰিয়াল-বন্ধুত্বপূৰ্ণ পৰিৱেশৰ সৈতে একত্ৰিত কৰিছোঁ। আপোনাৰ সন্তানৰ প্ৰথম ভ্ৰমণ হওক বা জটিল ইম্প্ল্যাণ্ট প্ৰক্ৰিয়া, আপুনি সৎ পৰামৰ্শ, স্বচ্ছ মূল্য আৰু কোমল হাত পাব।",
 
     "services.eyebrow": "আমাৰ সেৱা",
-    "services.title": "এটাই ছাদৰ তলত সম্পূৰ্ণ দাঁতৰ চিকিৎসা",
+    "services.title": "এটাই ঠাইতেই সম্পূৰ্ণ দাঁতৰ চিকিৎসা",
     "services.subhead":
       "সাধাৰণ পৰিষ্কাৰৰ পৰা উন্নত প্ৰসাধনী প্ৰক্ৰিয়ালৈকে — আমি আধুনিক সঁজুলি আৰু কৌশলৰ সৈতে আধুনিক দন্তচিকিৎসাৰ সম্পূৰ্ণ পৰিসৰ আগবঢ়াওঁ।",
 
     "tech.eyebrow": "উন্নত প্ৰযুক্তি",
     "tech.title": "উন্নত যত্নৰ বাবে আধুনিক সঁজুলি",
     "tech.subhead":
-      "ইয়াত দেখা প্ৰতিটো যন্ত্ৰই আমাৰ চিকিৎসাক সাধাৰণ ক্লিনিকতকৈ দ্ৰুত, সুৰক্ষিত আৰু আৰামদায়ক কৰি তোলে। যিকোনো কাৰ্ড টেপ কৰি জানি লওক এইটোৱে আপোনাক কেনেদৰে সহায় কৰে।",
+      "ইয়াত দেখুওৱা প্ৰতিটো যন্ত্ৰই আমাৰ চিকিৎসাক সাধাৰণ ক্লিনিকতকৈ দ্ৰুত, সুৰক্ষিত আৰু আৰামদায়ক কৰি তোলে। যিকোনো কাৰ্ড টেপ কৰি জানি লওক ই আপোনাক কেনেদৰে সহায় কৰে।",
 
-    "why.eyebrow": "আমাক কিয় বাছিব",
+    "why.eyebrow": "আমাক কিয় বাছনি কৰিব",
     "why.titleLine1": "ৰঙাপাৰা আৰু শোণিতপুৰৰ",
     "why.titleLine2": "পৰিয়ালসকলৰ ভৰসা",
     "why.subhead":
@@ -338,8 +442,56 @@ const dict = {
     "contact.subhead":
       "ৱাক-ইন কৰক, কল কৰক, বা এটা দ্ৰুত হোৱাটছএপ মেছেজ পঠাওক — আপোনাৰ প্ৰশ্নৰ উত্তৰ দিবলৈ আৰু সুবিধাজনক সময় ঠিক কৰিবলৈ আমি আনন্দিত।",
 
+    "visit.address": "ঠিকনা",
+    "visit.hours": "সময়",
+    "visit.openAllDays": "সাত দিনেই খোলা",
+    "visit.hoursValue": "১০:০০ AM – ৮:০০ PM",
+    "visit.getDirections": "ৰাস্তা চাওক",
+    "visit.callClinic": "ক্লিনিকলৈ ফোন কৰক",
+    "visit.photoSoon": "ক্লিনিকৰ ফটো অতি সোনকালে আহিব",
+    "visit.reviewsSuffix": "/ ৫ · {reviews}+ পৰ্যালোচনা",
+
+    "contact.callUs": "আমাক ফোন কৰক",
+    "contact.tapToDial": "পোনপটীয়াকৈ ডায়েল কৰিবলৈ টেপ কৰক",
+    "contact.whatsapp": "হোৱাটছএপ",
+    "contact.chatInstantly": "আমাৰ লগত তৎক্ষণাত চেট কৰক",
+    "contact.quickReplies": "ক্লিনিকৰ সময়ত দ্ৰুত উত্তৰ",
+    "contact.address": "ঠিকনা",
+    "contact.workingHours": "কাৰ্য সময়",
+    "contact.formName": "আপোনাৰ নাম",
+    "contact.formNamePlaceholder": "সম্পূৰ্ণ নাম",
+    "contact.formPhone": "ফোন নম্বৰ",
+    "contact.formPhonePlaceholder": "+৯১ ...",
+    "contact.formService": "সেৱা",
+    "contact.formMessage": "বাৰ্তা (ঐচ্ছিক)",
+    "contact.formMessagePlaceholder": "আপোনাৰ সমস্যাৰ বিষয়ে চমুকৈ লিখক…",
+    "contact.formNote": "ছাবমিট কৰিলে আপোনাৰ বিৱৰণৰ সৈতে হোৱাটছএপ খুলিব।",
+    "contact.submit": "হোৱাটছএপত পঠাওক",
+    "contact.submitSuccess": "✓ হোৱাটছএপ খুলি আছে… আমি আপোনাৰ লগত সোনকালে যোগাযোগ কৰিম।",
+    "contact.serviceGeneral": "সাধাৰণ পৰামৰ্শ",
+    "contact.serviceCleaning": "পৰিষ্কাৰ আৰু পলিচিং",
+    "contact.serviceRct": "ৰূট কেনেল চিকিৎসা",
+    "contact.serviceExtraction": "দাঁত উলিওৱা",
+    "contact.serviceImplants": "ডেণ্টেল ইম্প্ল্যাণ্ট",
+    "contact.serviceBraces": "ব্ৰেচেছ / অৰ্থডণ্টিক্স",
+    "contact.serviceWhitening": "দাঁত বগা কৰা",
+    "contact.serviceCrowns": "ক্ৰাউন আৰু ব্ৰিজ",
+    "contact.serviceKids": "ল'ৰা-ছোৱালীৰ দাঁতৰ চিকিৎসা",
+    "contact.serviceCosmetic": "প্ৰসাধনী দাঁতৰ চিকিৎসা",
+
+    "services.askWhatsapp": "হোৱাটছএপত সুধক",
+
+    "tech.learnMore": "অধিক জানক",
+    "tech.howItBenefits": "ই আপোনাক কেনেদৰে সহায় কৰে",
+    "tech.bookOnWhatsapp": "হোৱাটছএপত বুক কৰক",
+    "tech.callButton": "ফোন কৰক {phone}",
+
+    "gallery.openPhoto": "ফটো খোলক",
+
+    "about.doctorTitle": "প্ৰতিষ্ঠাপক আৰু মুখ্য দাঁতৰ শল্যচিকিৎসক",
+
     "footer.brandDesc":
-      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিনা যন্ত্ৰণা আৰু সুলভ দাঁতৰ চিকিৎসা — ডাঃ তবাৰক হুছেইন (B.D.S)ৰ নেতৃত্বত।",
+      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিষহীন আৰু সুলভ দাঁতৰ চিকিৎসা — ডাঃ তবাৰক হুছেইন (B.D.S)ৰ নেতৃত্বত।",
     "footer.quickLinks": "দ্ৰুত লিংক",
     "footer.services": "সেৱা",
     "footer.reachUs": "আমাৰ লগত যোগাযোগ",

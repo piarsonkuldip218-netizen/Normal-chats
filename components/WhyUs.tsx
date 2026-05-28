@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { features } from "@/lib/data";
 import { useT } from "@/lib/i18n";
+import { useFeature } from "@/lib/i18n-content";
 
 const iconMap: Record<string, LucideIcon> = {
   Star,
@@ -65,29 +66,35 @@ export default function WhyUs() {
           {features.map((f, i) => {
             const Icon = iconMap[f.icon] ?? Star;
             return (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.55,
-                  delay: (i % 3) * 0.08,
-                }}
-                className="glass-dark rounded-2xl p-6 transition hover:bg-white/15"
-              >
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-white/15 text-white">
-                  <Icon size={22} />
-                </div>
-                <h3 className="mt-4 font-display text-lg font-semibold text-white">
-                  {f.title}
-                </h3>
-                <p className="mt-2 text-sm text-white/80">{f.description}</p>
-              </motion.div>
+              <FeatureCard key={f.title} index={i} Icon={Icon} />
             );
           })}
         </div>
       </div>
     </section>
+  );
+}
+
+function FeatureCard({ index: i, Icon }: { index: number; Icon: LucideIcon }) {
+  const copy = useFeature(i);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.55,
+        delay: (i % 3) * 0.08,
+      }}
+      className="glass-dark rounded-2xl p-6 transition hover:bg-white/15"
+    >
+      <div className="grid h-12 w-12 place-items-center rounded-xl bg-white/15 text-white">
+        <Icon size={22} />
+      </div>
+      <h3 className="mt-4 font-display text-lg font-semibold text-white">
+        {copy.title}
+      </h3>
+      <p className="mt-2 text-sm text-white/80">{copy.description}</p>
+    </motion.div>
   );
 }

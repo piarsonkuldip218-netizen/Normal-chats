@@ -7,6 +7,7 @@ import { X, ChevronLeft, ChevronRight, Maximize2, Camera } from "lucide-react";
 import { galleryPhotos } from "@/lib/data";
 import { asset } from "@/lib/path";
 import { useT } from "@/lib/i18n";
+import { useGalleryPhoto } from "@/lib/i18n-content";
 
 export default function Gallery() {
   const { t } = useT();
@@ -64,50 +65,12 @@ export default function Gallery() {
         {hasPhotos ? (
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
             {galleryPhotos.map((p, i) => (
-              <motion.button
+              <GalleryThumb
                 key={p.src + i}
-                type="button"
-                onClick={() => setActiveIndex(i)}
-                initial={{ opacity: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  duration: 0.5,
-                  delay: (i % 6) * 0.05,
-                  ease: [0.2, 0.8, 0.2, 1],
-                }}
-                className={`group relative overflow-hidden rounded-2xl glass aspect-square ${
-                  i === 0 ? "col-span-2 row-span-2 aspect-[4/4] sm:aspect-square" : ""
-                }`}
-                aria-label={`Open photo: ${p.caption}`}
-              >
-                <Image
-                  src={asset(p.src)}
-                  alt={p.caption}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" />
-
-                {/* Category chip */}
-                <div className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-700 backdrop-blur">
-                  {p.category}
-                </div>
-
-                {/* Zoom icon hint */}
-                <div className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/0 text-white opacity-0 transition group-hover:bg-white/20 group-hover:opacity-100">
-                  <Maximize2 size={16} />
-                </div>
-
-                {/* Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
-                  <p className="text-xs font-semibold text-white drop-shadow-md sm:text-sm">
-                    {p.caption}
-                  </p>
-                </div>
-              </motion.button>
+                src={p.src}
+                index={i}
+                onOpen={() => setActiveIndex(i)}
+              />
             ))}
           </div>
         ) : (
@@ -219,18 +182,83 @@ export default function Gallery() {
                 />
               </div>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/85 to-transparent p-4">
-                <p className="text-sm font-semibold text-white">
-                  {galleryPhotos[activeIndex].caption}
-                </p>
-                <p className="text-xs text-white/70">
-                  {galleryPhotos[activeIndex].category} •{" "}
-                  {activeIndex + 1} / {galleryPhotos.length}
-                </p>
+                <LightboxCaption index={activeIndex} total={galleryPhotos.length} />
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </section>
+  );
+}
+
+function GalleryThumb({
+  src,
+  index: i,
+  onOpen,
+}: {
+  src: string;
+  index: number;
+  onOpen: () => void;
+}) {
+  const copy = useGalleryPhoto(i);
+  return (
+    <motion.button
+      type="button"
+      onClick={onOpen}
+      initial={{ opacity: 0, scale: 0.92 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.5,
+        delay: (i % 6) * 0.05,
+        ease: [0.2, 0.8, 0.2, 1],
+      }}
+      className={`group relative overflow-hidden rounded-2xl glass aspect-square ${
+        i === 0 ? "col-span-2 row-span-2 aspect-[4/4] sm:aspect-square" : ""
+      }`}
+      aria-label={`Open photo: ${copy.caption}`}
+    >
+      <Image
+        src={asset(src)}
+        alt={copy.caption}
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-80 transition group-hover:opacity-100" />
+
+      <div className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-700 backdrop-blur">
+        {copy.category}
+      </div>
+
+      <div className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/0 text-white opacity-0 transition group-hover:bg-white/20 group-hover:opacity-100">
+        <Maximize2 size={16} />
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
+        <p className="text-xs font-semibold text-white drop-shadow-md sm:text-sm">
+          {copy.caption}
+        </p>
+      </div>
+    </motion.button>
+  );
+}
+
+function LightboxCaption({
+  index,
+  total,
+}: {
+  index: number;
+  total: number;
+}) {
+  const copy = useGalleryPhoto(index);
+  return (
+    <>
+      <p className="text-sm font-semibold text-white">{copy.caption}</p>
+      <p className="text-xs text-white/70">
+        {copy.category} • {index + 1} / {total}
+      </p>
+    </>
   );
 }

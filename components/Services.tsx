@@ -18,6 +18,7 @@ import {
 import { services, clinic } from "@/lib/data";
 import { asset } from "@/lib/path";
 import { useT } from "@/lib/i18n";
+import { useService } from "@/lib/i18n-content";
 
 const iconMap: Record<string, LucideIcon> = {
   Stethoscope,
@@ -64,68 +65,83 @@ export default function Services() {
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {(services as Service[]).map((s, i) => {
             const Icon = iconMap[s.icon] ?? Sparkles;
-            const wa = `https://wa.me/${clinic.contact.whatsapp}?text=${encodeURIComponent(
-              `Hello TAMS Dental, I would like to know more about "${s.title}".`
-            )}`;
             return (
-              <motion.article
+              <ServiceCard
                 key={s.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.55,
-                  delay: (i % 3) * 0.08,
-                  ease: [0.2, 0.8, 0.2, 1],
-                }}
-                className="glass-card group relative overflow-hidden flex flex-col"
-              >
-                {/* Image header — left fully visible (no dark overlay, no
-                    icon badge on top) so the photo isn't obstructed. */}
-                {s.image && (
-                  /* Taller aspect-ratio container + object-contain so the
-                     entire treatment photo is always visible — even when
-                     the source image is portrait. The brand-tinted gradient
-                     backdrop fills any letterboxed space cleanly. */
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60">
-                    <Image
-                      src={asset(s.image)}
-                      alt={s.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                )}
-
-                {/* Body — icon now lives here (not on top of the image),
-                    and text uses bolder weights for stronger hierarchy. */}
-                <div className="flex-1 p-6">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
-                    <Icon size={22} strokeWidth={2.2} />
-                  </div>
-                  <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                    {s.description}
-                  </p>
-
-                  <a
-                    href={wa}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition group-hover:gap-2.5"
-                  >
-                    Ask on WhatsApp
-                    <ArrowRight size={14} />
-                  </a>
-                </div>
-              </motion.article>
+                service={s}
+                index={i}
+                Icon={Icon}
+                askLabel={t("services.askWhatsapp")}
+              />
             );
           })}
         </div>
       </div>
     </section>
+  );
+}
+
+function ServiceCard({
+  service: s,
+  index: i,
+  Icon,
+  askLabel,
+}: {
+  service: Service;
+  index: number;
+  Icon: LucideIcon;
+  askLabel: string;
+}) {
+  // Translated title + description for the active locale.
+  const copy = useService(s.slug);
+  const wa = `https://wa.me/${clinic.contact.whatsapp}?text=${encodeURIComponent(
+    `Hello TAMS Dental, I would like to know more about "${copy.title}".`
+  )}`;
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.55,
+        delay: (i % 3) * 0.08,
+        ease: [0.2, 0.8, 0.2, 1],
+      }}
+      className="glass-card group relative overflow-hidden flex flex-col"
+    >
+      {s.image && (
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brand-50 via-white to-accent-100/60">
+          <Image
+            src={asset(s.image)}
+            alt={copy.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
+
+      <div className="flex-1 p-6">
+        <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
+          <Icon size={22} strokeWidth={2.2} />
+        </div>
+        <h3 className="mt-4 font-display text-lg font-semibold text-slate-900">
+          {copy.title}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          {copy.description}
+        </p>
+
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition group-hover:gap-2.5"
+        >
+          {askLabel}
+          <ArrowRight size={14} />
+        </a>
+      </div>
+    </motion.article>
   );
 }

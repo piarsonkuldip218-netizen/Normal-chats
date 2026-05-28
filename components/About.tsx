@@ -6,9 +6,11 @@ import { GraduationCap, Award, Users, Stethoscope } from "lucide-react";
 import { clinic } from "@/lib/data";
 import { asset } from "@/lib/path";
 import { useT } from "@/lib/i18n";
+import { useDoctorBio } from "@/lib/i18n-content";
 
 export default function About() {
   const { t } = useT();
+  const bio = useDoctorBio();
   const stats = [
     { icon: Users, value: "1000+", label: t("about.statHappyPatients") },
     { icon: Stethoscope, value: "9+", label: t("about.statServices") },
@@ -52,7 +54,7 @@ export default function About() {
                   {clinic.doctor.name}
                 </div>
                 <div className="text-xs text-slate-500">
-                  {clinic.doctor.qualification} · {clinic.doctor.title}
+                  {clinic.doctor.qualification} · {t("about.doctorTitle")}
                 </div>
               </div>
             </div>
@@ -76,7 +78,7 @@ export default function About() {
             {t("about.title")}
           </h2>
           <p className="mt-4 text-slate-600">
-            {clinic.doctor.bio}
+            {bio}
           </p>
           <p className="mt-3 text-slate-600">
             {t("about.subParagraph", { clinic: clinic.fullName })}
