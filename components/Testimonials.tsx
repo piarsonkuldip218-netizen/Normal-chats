@@ -229,7 +229,7 @@ export default function Testimonials() {
                 </>
               ) : (
                 <>
-                  Show all {testimonials.length} reviews <ChevronDown size={16} />
+                  Show more reviews <ChevronDown size={16} />
                 </>
               )}
             </button>
@@ -240,7 +240,7 @@ export default function Testimonials() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition hover:gap-2"
             >
-              <Users size={14} /> Check all reviews on Google →
+              <Users size={14} /> Read all reviews on Google →
             </a>
           </div>
         )}
