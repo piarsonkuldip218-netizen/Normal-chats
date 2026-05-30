@@ -35,7 +35,7 @@ export default function About() {
               {/* Landscape doctor photo — 4:3 frame + object-center keeps the
                   face centred without heavy cropping. */}
               <Image
-                src={asset("/doctor.jpg")}
+                src={asset("/doctor-v2.jpg")}
                 alt={`${clinic.doctor.name} - ${clinic.doctor.title}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"
