@@ -163,35 +163,35 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Floating mini cards — same tactile water-glass style as before. */}
+          {/* Floating mini cards — kept compact so they don't cover faces. */}
           <motion.div
-            animate={{ y: [0, -10, 0] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-3 top-6 water-glass rounded-2xl px-4 py-3 text-sm sm:left-4 sm:top-10"
+            className="absolute left-2 top-3 water-glass rounded-xl px-2.5 py-1.5 sm:left-3 sm:top-4"
           >
-            <div className="flex items-center gap-2">
-              <div className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <div className="font-semibold text-slate-800">
+            <div className="flex items-center gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-emerald-500" />
+              <div className="text-xs font-semibold text-slate-800">
                 {t("hero.teamBadge")}
               </div>
             </div>
-            <div className="mt-1 text-xs text-slate-500">
+            <div className="mt-0.5 text-[10px] leading-tight text-slate-500">
               {t("hero.teamBadgeSub")}
             </div>
           </motion.div>
 
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute right-3 bottom-6 water-glass rounded-2xl px-4 py-3 text-sm sm:right-4 sm:bottom-10"
+            className="absolute right-2 bottom-3 water-glass rounded-xl px-2.5 py-1.5 sm:right-3 sm:bottom-4"
           >
-            <div className="flex items-center gap-2">
-              <Star size={14} className="fill-amber-400 text-amber-400" />
-              <div className="font-semibold text-slate-800">
+            <div className="flex items-center gap-1.5">
+              <Star size={12} className="fill-amber-400 text-amber-400" />
+              <div className="text-xs font-semibold text-slate-800">
                 {t("hero.reviewsCount")}
               </div>
             </div>
-            <div className="mt-1 text-xs text-slate-500">
+            <div className="mt-0.5 text-[10px] leading-tight text-slate-500">
               {t("hero.trustedBy")}
             </div>
           </motion.div>
