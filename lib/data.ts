@@ -95,7 +95,7 @@ export const services = [
     slug: "braces",
     title: "Braces & Orthodontics",
     icon: "AlignCenter",
-    image: "/services/braces.jpg",
+    image: "/services/braces.png",
     description:
       "Metal, ceramic and clear aligners to straighten teeth and correct bite issues for all ages.",
   },
