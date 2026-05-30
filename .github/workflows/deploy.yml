@@ -33,6 +33,9 @@ jobs:
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
+          # Custom domain attached (tamsdental.in) → disable the /Tams-dental
+          # basePath so assets resolve from the domain root.
+          CUSTOM_DOMAIN: "true"
         run: npm run build
 
       - name: Add .nojekyll (preserve _next folder)
