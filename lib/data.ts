@@ -5,9 +5,16 @@ export const clinic = {
   tagline: "Healthy Smiles, Happy Lives",
   doctor: {
     name: "Dr. Tabarak Hussain",
-    qualification: "B.D.S",
-    title: "Founder & Chief Dental Surgeon",
-    bio: "Dr. Tabarak Hussain is a passionate dental surgeon with years of clinical experience, dedicated to providing painless, modern, and affordable dental care to families across Rangapara and Sonitpur.",
+    qualification: "BDS (MMDCH)",
+    title: "Dental Surgeon & Implantologist",
+    // Full credential list shown in the About section.
+    credentials: [
+      "BDS (MMDCH)",
+      "Fellowship in Clinical Orthodontics — Hyderabad",
+      "Implantology — Mumbai",
+    ],
+    regdNo: "Regd. No. 2739/A (Guwahati)",
+    bio: "Dr. Tabarak Hussain is a dental surgeon and implantologist with years of clinical experience, dedicated to providing painless, modern, and affordable dental care to families across Rangapara and Sonitpur.",
   },
   rating: {
     score: 4.8,

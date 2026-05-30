@@ -15,7 +15,7 @@ export default function About() {
     { icon: Users, value: "1000+", label: t("about.statHappyPatients") },
     { icon: Stethoscope, value: "9+", label: t("about.statServices") },
     { icon: Award, value: "4.8★", label: t("about.statRating") },
-    { icon: GraduationCap, value: "B.D.S", label: t("about.statQualified") },
+    { icon: GraduationCap, value: "BDS", label: t("about.statQualified") },
   ];
   return (
     <section id="about" className="relative py-20 md:py-28">
@@ -83,6 +83,31 @@ export default function About() {
           <p className="mt-3 text-slate-600">
             {t("about.subParagraph", { clinic: clinic.fullName })}
           </p>
+
+          {/* Doctor qualifications — builds trust by listing the full
+              credentials + dental council registration number. */}
+          <div className="mt-6 water-glass rounded-2xl p-5">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
+              {t("about.qualifications")}
+            </h3>
+            <ul className="mt-3 space-y-2">
+              {clinic.doctor.credentials.map((c) => (
+                <li
+                  key={c}
+                  className="flex items-start gap-2.5 text-sm text-slate-700"
+                >
+                  <GraduationCap
+                    size={16}
+                    className="mt-0.5 shrink-0 text-brand-600"
+                  />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 border-t border-slate-200/70 pt-3 text-xs font-medium text-slate-500">
+              {clinic.doctor.regdNo}
+            </p>
+          </div>
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {stats.map(({ icon: Icon, value, label }) => (

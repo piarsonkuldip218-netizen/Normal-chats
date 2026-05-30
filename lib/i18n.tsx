@@ -198,11 +198,12 @@ const dict = {
     "gallery.openPhoto": "Open photo",
 
     // Doctor / About
-    "about.doctorTitle": "Founder & Chief Dental Surgeon",
+    "about.qualifications": "Qualifications",
+    "about.doctorTitle": "Dental Surgeon & Implantologist",
 
     // Footer
     "footer.brandDesc":
-      "Modern, painless and affordable dental care in Rangapara, Sonitpur — led by Dr. Tabarak Hussain (B.D.S).",
+      "Modern, painless and affordable dental care in Rangapara, Sonitpur — led by Dr. Tabarak Hussain (BDS, Implantologist).",
     "footer.quickLinks": "Quick Links",
     "footer.services": "Services",
     "footer.reachUs": "Reach Us",
@@ -348,10 +349,11 @@ const dict = {
 
     "gallery.openPhoto": "तस्वीर खोलें",
 
-    "about.doctorTitle": "संस्थापक व मुख्य दंत शल्य चिकित्सक",
+    "about.qualifications": "योग्यताएँ",
+    "about.doctorTitle": "दंत शल्य चिकित्सक व इम्प्लांटोलॉजिस्ट",
 
     "footer.brandDesc":
-      "रंगापारा, सोनितपुर में आधुनिक, दर्द-रहित और किफायती दंत चिकित्सा — डॉ. तबारक हुसैन (B.D.S) के नेतृत्व में।",
+      "रंगापारा, सोनितपुर में आधुनिक, दर्द-रहित और किफायती दंत चिकित्सा — डॉ. तबारक हुसैन (BDS, इम्प्लांटोलॉजिस्ट) के नेतृत्व में।",
     "footer.quickLinks": "त्वरित लिंक",
     "footer.services": "सेवाएँ",
     "footer.reachUs": "हमें कॉल करें",
@@ -497,10 +499,11 @@ const dict = {
 
     "gallery.openPhoto": "ফটো খোলক",
 
-    "about.doctorTitle": "প্ৰতিষ্ঠাপক আৰু মুখ্য দাঁতৰ শল্যচিকিৎসক",
+    "about.qualifications": "যোগ্যতা",
+    "about.doctorTitle": "দাঁতৰ শল্যচিকিৎসক আৰু ইম্প্ল্যাণ্টোলজিষ্ট",
 
     "footer.brandDesc":
-      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিষহীন আৰু সুলভ দাঁতৰ চিকিৎসা — ডাঃ তবাৰক হুছেইন (B.D.S)ৰ নেতৃত্বত।",
+      "ৰঙাপাৰা, শোণিতপুৰত আধুনিক, বিষহীন আৰু সুলভ দাঁতৰ চিকিৎসা — ডাঃ তবাৰক হুছেইন (BDS, ইম্প্ল্যাণ্টোলজিষ্ট)ৰ নেতৃত্বত।",
     "footer.quickLinks": "দ্ৰুত লিংক",
     "footer.services": "সেৱা",
     "footer.reachUs": "আমাৰ লগত যোগাযোগ",

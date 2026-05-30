@@ -68,7 +68,7 @@ export default function Hero() {
             className="mt-5 max-w-xl text-base text-slate-600 md:text-lg"
           >
             {t("hero.subhead", {
-              doctor: `${clinic.doctor.name} (${clinic.doctor.qualification})`,
+              doctor: `${clinic.doctor.name}, ${clinic.doctor.title}`,
             })}
           </motion.p>
 
