@@ -88,7 +88,7 @@ const dict = {
     "about.statHappyPatients": "Happy Patients",
     "about.statServices": "Services Offered",
     "about.statRating": "Google Rating",
-    "about.statQualified": "Qualified Dentist",
+    "about.statQualified": "Surgeon & Implantologist",
     "about.subParagraph":
       "At {clinic}, we combine the latest dental technology with a warm, family-friendly environment. Whether it's your child's first visit or a complex implant procedure, you can expect honest advice, transparent pricing and gentle hands.",
 
@@ -254,7 +254,7 @@ const dict = {
     "about.statHappyPatients": "खुश मरीज़",
     "about.statServices": "उपलब्ध सेवाएँ",
     "about.statRating": "गूगल रेटिंग",
-    "about.statQualified": "योग्य दंत चिकित्सक",
+    "about.statQualified": "सर्जन व इम्प्लांटोलॉजिस्ट",
     "about.subParagraph":
       "{clinic} में हम नवीनतम दंत तकनीक को एक गर्मजोश, परिवार-अनुकूल माहौल के साथ जोड़ते हैं। चाहे आपके बच्चे की पहली विज़िट हो या जटिल इम्प्लांट प्रक्रिया, आपको ईमानदार सलाह, पारदर्शी कीमतें और कोमल हाथ मिलेंगे।",
 
@@ -404,7 +404,7 @@ const dict = {
     "about.statHappyPatients": "সুখী ৰোগী",
     "about.statServices": "প্ৰদান কৰা সেৱা",
     "about.statRating": "গুগল ৰেটিং",
-    "about.statQualified": "যোগ্য দাঁতৰ চিকিৎসক",
+    "about.statQualified": "শল্যচিকিৎসক আৰু ইম্প্ল্যাণ্টোলজিষ্ট",
     "about.subParagraph":
       "{clinic}ত আমি আধুনিক দাঁতৰ প্ৰযুক্তিক এক উষ্ণ, পৰিয়াল-বন্ধুত্বপূৰ্ণ পৰিৱেশৰ সৈতে একত্ৰিত কৰিছোঁ। আপোনাৰ সন্তানৰ প্ৰথম ভ্ৰমণ হওক বা জটিল ইম্প্ল্যাণ্ট প্ৰক্ৰিয়া, আপুনি সৎ পৰামৰ্শ, স্বচ্ছ মূল্য আৰু কোমল হাত পাব।",
 
