@@ -60,9 +60,6 @@ export default function About() {
               </div>
             </div>
           </div>
-
-          {/* Decorative ring */}
-          <div className="pointer-events-none absolute -top-6 -right-6 h-24 w-24 rounded-full border-4 border-dashed border-brand-300/60 animate-spin-slow" />
         </motion.div>
 
         {/* Right content */}
