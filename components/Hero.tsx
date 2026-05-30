@@ -1,17 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Star, Clock, MapPin } from "lucide-react";
 import { clinic } from "@/lib/data";
+import { asset } from "@/lib/path";
 import { useT } from "@/lib/i18n";
-
-const ToothModel = dynamic(() => import("./ToothModel"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-full w-full animate-pulse rounded-3xl bg-gradient-to-br from-brand-200/40 to-accent-400/30" />
-  ),
-});
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -142,28 +136,44 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right: 3D model */}
+        {/* Right: clinic team photo (doctor + staff) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-          className="relative h-[420px] w-full md:h-[520px] lg:h-[560px]"
+          className="relative w-full"
         >
-          <div className="absolute inset-0 rounded-[2.5rem] glass" />
-          <div className="absolute inset-0">
-            <ToothModel />
+          {/* Glass frame wrapping the photo — matches the site's
+              glassmorphism style. The photo is 4:3 landscape, so we use a
+              matching aspect ratio with object-cover: full team visible,
+              no stretching, sharp on every screen size. */}
+          <div className="relative overflow-hidden rounded-[2rem] glass p-2.5 sm:p-3">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-brand-100 to-accent-400/40">
+              <Image
+                src={asset("/team.jpg")}
+                alt={`${clinic.doctor.name} and the TAMS Dental team`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-center"
+                priority
+              />
+              {/* Subtle bottom gradient so the floating badge text stays
+                  readable over bright parts of the photo. */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/25 via-transparent to-transparent" />
+            </div>
           </div>
 
-          {/* Floating mini cards — upgraded to water-glass for a more
-              tactile "drop of glass" feel against the 3D scene. */}
+          {/* Floating mini cards — same tactile water-glass style as before. */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-4 top-10 water-glass rounded-2xl px-4 py-3 text-sm"
+            className="absolute left-3 top-6 water-glass rounded-2xl px-4 py-3 text-sm sm:left-4 sm:top-10"
           >
             <div className="flex items-center gap-2">
               <div className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <div className="font-semibold text-slate-800">{t("hero.painlessCare")}</div>
+              <div className="font-semibold text-slate-800">
+                {t("hero.painlessCare")}
+              </div>
             </div>
             <div className="mt-1 text-xs text-slate-500">
               {t("hero.latestAnaesthesia")}
@@ -173,11 +183,13 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute right-4 bottom-10 water-glass rounded-2xl px-4 py-3 text-sm"
+            className="absolute right-3 bottom-6 water-glass rounded-2xl px-4 py-3 text-sm sm:right-4 sm:bottom-10"
           >
             <div className="flex items-center gap-2">
               <Star size={14} className="fill-amber-400 text-amber-400" />
-              <div className="font-semibold text-slate-800">{t("hero.reviewsCount")}</div>
+              <div className="font-semibold text-slate-800">
+                {t("hero.reviewsCount")}
+              </div>
             </div>
             <div className="mt-1 text-xs text-slate-500">
               {t("hero.trustedBy")}
