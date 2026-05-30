@@ -172,11 +172,11 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <div className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
               <div className="font-semibold text-slate-800">
-                {t("hero.painlessCare")}
+                {t("hero.teamBadge")}
               </div>
             </div>
             <div className="mt-1 text-xs text-slate-500">
-              {t("hero.latestAnaesthesia")}
+              {t("hero.teamBadgeSub")}
             </div>
           </motion.div>
 

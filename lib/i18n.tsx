@@ -73,6 +73,8 @@ const dict = {
     "hero.ratedValue": "4.8★ on Google",
     "hero.painlessCare": "Painless Care",
     "hero.latestAnaesthesia": "Latest anaesthesia",
+    "hero.teamBadge": "TAMS Dental Team",
+    "hero.teamBadgeSub": "Caring for your smile",
     "hero.reviewsCount": "68+ Reviews",
     "hero.trustedBy": "Trusted by Sonitpur",
 
@@ -238,6 +240,8 @@ const dict = {
     "hero.ratedValue": "गूगल पर 4.8★",
     "hero.painlessCare": "दर्द-रहित देखभाल",
     "hero.latestAnaesthesia": "आधुनिक एनेस्थीसिया",
+    "hero.teamBadge": "TAMS Dental टीम",
+    "hero.teamBadgeSub": "आपकी मुस्कान की देखभाल",
     "hero.reviewsCount": "68+ समीक्षाएँ",
     "hero.trustedBy": "सोनितपुर का भरोसा",
 
@@ -385,6 +389,8 @@ const dict = {
     "hero.ratedValue": "গুগলত ৪.৮★",
     "hero.painlessCare": "বিষহীন চিকিৎসা",
     "hero.latestAnaesthesia": "আধুনিক এনেস্থেছিয়া",
+    "hero.teamBadge": "TAMS Dental দল",
+    "hero.teamBadgeSub": "আপোনাৰ হাঁহিৰ যত্ন",
     "hero.reviewsCount": "৬৮+ পৰ্যালোচনা",
     "hero.trustedBy": "শোণিতপুৰৰ ভৰসা",
 
