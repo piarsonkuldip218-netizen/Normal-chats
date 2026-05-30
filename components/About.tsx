@@ -31,14 +31,15 @@ export default function About() {
           className="relative mx-auto w-full max-w-md"
         >
           <div className="relative overflow-hidden rounded-[2rem] glass p-3">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100 to-accent-400/40">
-              {/* Replace /doctor.jpg with the real photo when available */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100 to-accent-400/40">
+              {/* Landscape doctor photo — 4:3 frame + object-center keeps the
+                  face centred without heavy cropping. */}
               <Image
                 src={asset("/doctor.jpg")}
-                alt={`${clinic.doctor.name} - ${clinic.doctor.qualification}`}
+                alt={`${clinic.doctor.name} - ${clinic.doctor.title}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"
-                className="object-cover"
+                className="object-cover object-center"
                 priority={false}
               />
               {/* Fallback overlay shimmer (visible if image missing) */}
