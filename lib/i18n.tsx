@@ -129,7 +129,7 @@ const dict = {
     "visit.eyebrow": "Visit Our Clinic",
     "visit.title": "You'll Find Us in the Heart of Rangapara",
     "visit.subhead":
-      "Located on the ground floor of Naman Bhawan, opposite Joydev Cinema Hall — easy to spot, comfortable to walk into.",
+      "Located near Swasti Medical, Ward No. 8, Rangapara — easy to find and comfortable to walk into.",
 
     // Gallery
     "gallery.eyebrow": "Gallery",
@@ -290,7 +290,7 @@ const dict = {
     "visit.eyebrow": "हमारे क्लिनिक पधारें",
     "visit.title": "आप हमें रंगापारा के बीच में ही पाएँगे",
     "visit.subhead":
-      "नमन भवन के ग्राउंड फ्लोर पर, जॉयदेव सिनेमा हॉल के सामने — आसानी से दिखता है, अंदर आना आरामदायक है।",
+      "स्वस्ति मेडिकल के पास, वार्ड नं. 8, रंगापारा में स्थित — आसानी से मिल जाता है, अंदर आना आरामदायक है।",
 
     "gallery.eyebrow": "गैलरी",
     "gallery.title": "TAMS Dental की एक झलक",
@@ -440,7 +440,7 @@ const dict = {
     "visit.eyebrow": "আমাৰ ক্লিনিক ভ্ৰমণ কৰক",
     "visit.title": "ৰঙাপাৰাৰ মাজতেই আপুনি আমাক পাব",
     "visit.subhead":
-      "নমন ভৱনৰ গ্ৰাউণ্ড ফ্লোৰত, জয়দেৱ চিনেমা হলৰ বিপৰীতে — সহজে দেখা যায়, ভিতৰলৈ আহিবলৈ আৰামদায়ক।",
+      "স্বস্তি মেডিকেলৰ ওচৰত, ৱাৰ্ড নং ৮, ৰঙাপাৰাত অৱস্থিত — সহজে বিচাৰি পোৱা যায়, ভিতৰলৈ আহিবলৈ আৰামদায়ক।",
 
     "gallery.eyebrow": "গেলেৰী",
     "gallery.title": "TAMS Dental ৰ এটি ঝলক",

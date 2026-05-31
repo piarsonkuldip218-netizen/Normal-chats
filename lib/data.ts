@@ -28,15 +28,15 @@ export const clinic = {
     email: "tamsdental@gmail.com",
   },
   address: {
-    line1: "Ground Floor, Naman Bhawan",
-    line2: "Opposite Joydev Cinema Hall",
-    line3: "Rangapara, No.1 Thakurbari T.E.",
+    line1: "Near Swasti Medical",
+    line2: "Ward No. 8",
+    line3: "Rangapara",
     city: "Sonitpur",
     state: "Assam",
     pincode: "784505",
-    full: "Ground Floor, Naman Bhawan, Opposite Joydev Cinema Hall, Rangapara, No.1 Thakurbari T.E., Sonitpur, Assam 784505",
+    full: "Near Swasti Medical, Ward No. 8, Rangapara, Sonitpur, Assam 784505",
     mapsQuery:
-      "TAMS Dental Dr T Hussain Rangapara Sonitpur Assam 784505",
+      "TAMS Dental Near Swasti Medical Ward No 8 Rangapara Sonitpur Assam 784505",
   },
   hours: [
     { day: "Monday", time: "10:00 AM – 8:00 PM" },
