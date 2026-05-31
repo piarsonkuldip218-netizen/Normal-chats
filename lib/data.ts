@@ -157,8 +157,8 @@ export const features = [
     icon: "HeartPulse",
   },
   {
-    title: "Affordable Pricing",
-    description: "Transparent fees with EMI options on major treatments.",
+    title: "Affordable & Fixed Pricing",
+    description: "Non-negotiable, transparent rates — no hidden charges.",
     icon: "Wallet",
   },
   {

@@ -55,7 +55,7 @@ export default function About() {
                   {clinic.doctor.name}
                 </div>
                 <div className="text-[10px] leading-tight text-slate-500">
-                  {clinic.doctor.qualification} · {t("about.doctorTitle")}
+                  BDS &amp; Fellowship in Clinical Orthodontics
                 </div>
               </div>
             </div>
