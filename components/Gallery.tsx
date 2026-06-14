@@ -8,6 +8,7 @@ import { galleryPhotos } from "@/lib/data";
 import { asset } from "@/lib/path";
 import { useT } from "@/lib/i18n";
 import { useGalleryPhoto } from "@/lib/i18n-content";
+import CloudinaryGallery from "./CloudinaryGallery";
 
 export default function Gallery() {
   const { t } = useT();
@@ -112,6 +113,9 @@ export default function Gallery() {
             </div>
           </motion.div>
         )}
+
+        {/* Live photos & videos uploaded by the clinic via the admin panel */}
+        <CloudinaryGallery />
       </div>
 
       {/* Lightbox */}
@@ -269,4 +273,4 @@ function LightboxCaption({
       </p>
     </>
   );
-}
+      }
