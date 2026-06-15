@@ -36,7 +36,7 @@ export default function CloudinaryGallery() {
         // images
         try {
           const res = await fetch(
-            `https://res.cloudinary.com/${CLOUD_NAME}/image/list/tams-dental:${folder}.json`
+            `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${folder}.json`
           );
           if (res.ok) {
             const data = await res.json();
@@ -53,7 +53,7 @@ export default function CloudinaryGallery() {
         // videos
         try {
           const res = await fetch(
-            `https://res.cloudinary.com/${CLOUD_NAME}/video/list/tams-dental:${folder}.json`
+            `https://res.cloudinary.com/${CLOUD_NAME}/video/list/${folder}.json`
           );
           if (res.ok) {
             const data = await res.json();
